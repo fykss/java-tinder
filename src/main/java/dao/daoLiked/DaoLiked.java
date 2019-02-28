@@ -5,5 +5,5 @@ import java.util.Collection;
 public interface DaoLiked<T> {
     void save(T value);
     void update(T value);
-    Collection<T> getAll();
+    boolean check(T value);
 }

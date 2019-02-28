@@ -28,74 +28,25 @@
                     <div class="table-container">
                         <table class="table-users table" border="0">
                             <tbody>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
+                            <#list listUsers as listItem>
+                                <tr>
+                                    <td width="10">
+                                        <div class="avatar-img">
+                                            <img class="img-circle" src="${listItem.getUrlImg()}" />  
+                                        </div>
 
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
-
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
-
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="10">
-                                    <div class="avatar-img">
-                                        <img class="img-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxhcCYW4QDWMOjOuUTxOd50KcJvK-rop9qE9zRltSbVS_bO-cfWA" />  
-                                    </div>
-
-                                </td>
-                                <td class="align-middle">
-                                    Herbert Hoover
-                                </td>
-                                <td class="align-middle">
-                                    Builder Sales Agent
-                                </td>
-                                <td  class="align-middle">
-                                    Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td class="align-middle">
+                                        ${listItem.getName()} ${listItem.getSurname()}
+                                    </td>
+                                    <td class="align-middle">
+                                        ${listItem.getPosition()}
+                                    </td>
+                                    <td  class="align-middle">
+                                        Last Login:  6/10/2017<br><small class="text-muted">5 days ago</small>
+                                    </td>
+                                </tr>
+                            </#list>
                             </tbody>
                         </table>
                     </div>

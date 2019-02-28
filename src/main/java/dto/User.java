@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.Date;
+
 public class User {
 
     private int id;
@@ -10,6 +12,7 @@ public class User {
     private String email;
     private String urlImg;
     private String gender;
+    private Date date;
 
     public User(){}
 
@@ -27,12 +30,13 @@ public class User {
     }
 
     public User(int id, String name, String surname, String position, String urlImg, String gender) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.position = position;
-        this.urlImg = urlImg;
+        this(id,name,surname,position,urlImg);
         this.gender = gender;
+    }
+
+    public User(int id, String name, String surname, String position, String urlImg, Date date) {
+        this(id,name,surname,position,urlImg);
+        this.date = date;
     }
 
     public User(int id, String name, String surname, String password, String position, String email, String urlImg, String gender) {
@@ -109,4 +113,13 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }

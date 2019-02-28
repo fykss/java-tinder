@@ -30,4 +30,8 @@ public class ServiceLikes {
         return like;
     }
 
+    public boolean checkLike(Like like){
+        return dbDaoLikes.check(like);
+    }
+
 }

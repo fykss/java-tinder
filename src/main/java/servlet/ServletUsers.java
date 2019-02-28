@@ -32,13 +32,16 @@ public class ServletUsers extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUserNotShow = new CookieUtil().getIdUser(req.getCookies());
-        if(countNext == idUserNotShow) {
-            countNext += 1;
-        }
+        String gender = serviceUsers.getUser(idUserNotShow).getGender();
+
         User user = serviceUsers.getUser(countNext);
         if(user == null ){
             resp.sendRedirect("/liked");
         }else {
+            while (gender.equals(user.getGender())) {
+                countNext++;
+                user = serviceUsers.getUser(countNext);
+            }
             data.put("img", user.getUrlImg());
             data.put("name", user.getName());
             data.put("surname", user.getSurname());
@@ -56,10 +59,14 @@ public class ServletUsers extends HttpServlet {
         if(like != null){
             int IdWho = new CookieUtil().getIdUser(req.getCookies());
             int idWhom = Integer.parseInt(like);
-
             Like likeWhom = serviceLikes.createLike(new Date(System.currentTimeMillis()), IdWho, idWhom);
-            serviceLikes.saveLike(likeWhom);
-            doGet(req,resp);
+            if(serviceLikes.checkLike(likeWhom)){
+                serviceLikes.updateLike(likeWhom);
+                doGet(req,resp);
+            }else{
+                serviceLikes.saveLike(likeWhom);
+                doGet(req,resp);
+            }
         }else if(dislike != null){
             doGet(req,resp);
         }

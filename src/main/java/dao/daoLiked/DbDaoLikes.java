@@ -2,7 +2,6 @@ package dao.daoLiked;
 
 import dto.Like;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class DbDaoLikes implements DaoLiked<Like> {
@@ -26,26 +25,33 @@ public class DbDaoLikes implements DaoLiked<Like> {
 
     @Override
     public void update(Like like) {
-        try(PreparedStatement ps = dbConn.prepareStatement("update OD_88_tinderLiked set date where userId_whom=? and date=?")){
-            ps.setInt(1, like.getUserIdWhom());
-            ps.setTimestamp(2, new Timestamp(like.getDate().getTime()));
-            ps.executeUpdate();
+        try(PreparedStatement ps = dbConn.prepareStatement("update OD_88_tinderLiked set date=? where userId_who=? and userId_whom=?")){
+            ps.setTimestamp(1, new Timestamp(like.getDate().getTime()));
+            ps.setInt(2, like.getUserIdWho());
+            ps.setInt(3, like.getUserIdWhom());
+            ps.execute();
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
     @Override
-    public Collection<Like> getAll() {
-        ArrayList<Like> likes = new ArrayList<>();
-        try(PreparedStatement ps = dbConn.prepareStatement("SELECT userId_whom from OD_88_tinderLiked where userId_who=?")){
+    public boolean check(Like like) {
+        boolean flag = false;
+        try(PreparedStatement ps = dbConn.prepareStatement("SELECT userId_who, userId_whom FROM OD_88_tinderLiked where userId_who=? and userId_whom=?")){
+            ps.setInt(1, like.getUserIdWho());
+            ps.setInt(2, like.getUserIdWhom());
             ResultSet rSet = ps.executeQuery();
+            int userId_whoSql = 0;
+            int userId_whomSql = 0;
             while (rSet.next()){
-                //rSet.getInt()
+                userId_whoSql = rSet.getInt("userId_who");
+                userId_whomSql = rSet.getInt("userId_whom");
             }
+            flag = (like.getUserIdWho() == userId_whoSql) && (like.getUserIdWhom() == userId_whomSql);
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return likes;
+        return flag;
     }
 }

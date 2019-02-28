@@ -31,4 +31,8 @@ public class ServiceUsers {
     public Collection<User> getAllUsers() {
         return dbDaoUsers.getAll();
     }
+
+    public Collection<User> getAllLikesUser(int userId){
+        return dbDaoUsers.getAllLikes(userId);
+    }
 }
