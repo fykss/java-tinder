@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
@@ -23,7 +22,6 @@ public class ServletPeopleList extends HttpServlet {
     private ServiceUsers serviceUsers;
     private Freemarker freemarker = new Freemarker();
     private HashMap<String, Object> data = new HashMap<>();
-    private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
     public ServletPeopleList(Connection dbConn) {
         this.serviceUsers = new ServiceUsers(dbConn);
@@ -40,10 +38,7 @@ public class ServletPeopleList extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userId = req.getParameter("userId");
-        System.out.println(userId);
-
-//        freemarker.render("people-list.ftl", data,resp);
+        resp.sendRedirect("/messages?id=" + req.getParameter("userId"));
     }
 
     private String describeTimeDif(Date date) {

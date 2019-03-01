@@ -9,6 +9,21 @@ public class Like {
     private int userIdWhom;
     private Date date;
 
+    public Like() {}
+
+    public Like(int userIdWho, int userIdWhom, Date date) {
+        this.userIdWho = userIdWho;
+        this.userIdWhom = userIdWhom;
+        this.date = date;
+    }
+
+    public Like(int id, int userIdWho, int userIdWhom, Date date) {
+        this.id = id;
+        this.userIdWho = userIdWho;
+        this.userIdWhom = userIdWhom;
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }
@@ -41,12 +56,4 @@ public class Like {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Like{" +
-                ", userIdWho=" + userIdWho +
-                ", userIdWhom=" + userIdWhom +
-                ", date=" + date +
-                '}';
-    }
 }

@@ -17,10 +17,11 @@ public class App {
         ServletContextHandler handler = new ServletContextHandler();
 
         handler.addServlet(ServletTemplates.class, "/src/main/resources/templates/css/*");
+        handler.addServlet(new ServletHolder(new ServletRegistration(dbConn)), "/reg/*");
         handler.addServlet(new ServletHolder(new ServletLogin(dbConn)), "/login/*");
         handler.addServlet(new ServletHolder(new ServletUsers(dbConn)), "/users/*");
         handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked/*");
-        handler.addServlet(new ServletHolder(new ServletRegistration(dbConn)), "/reg/*");
+        handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/messages/*");
 
         handler.addFilter(new FilterHolder(new FilterLogin()), "/users/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 

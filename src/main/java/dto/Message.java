@@ -2,12 +2,20 @@ package dto;
 
 import java.util.Date;
 
-public class Message {
+public class Message{
     private int id;
     private int sender;
     private int recipient;
     private String textMessage;
     private Date date;
+
+    public Message(){};
+
+    public Message(int sender, int recipient, Date date) {
+        this.sender = sender;
+        this.recipient = recipient;
+        this.date = date;
+    }
 
     public Message(int id, int sender, int recipient, String textMessage, Date date) {
         this.id = id;

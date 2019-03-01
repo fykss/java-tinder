@@ -1,7 +1,5 @@
 package service;
 
-
-import dao.daoUsers.DaoUsers;
 import dao.daoUsers.DbDaoUsers;
 import dto.User;
 
@@ -10,35 +8,33 @@ import java.util.Collection;
 
 public class ServiceUsers {
 
-    private DaoUsers daoUsers;
+    private DbDaoUsers dbDaoUsers;
 
     public ServiceUsers(Connection dbConn) {
-        this.daoUsers = new DbDaoUsers(dbConn);
+        this.dbDaoUsers = new DbDaoUsers(dbConn);
     }
 
     public User getUser(int idUser) {
-        return daoUsers.get(idUser);
+        return dbDaoUsers.get(idUser);
     }
 
     public int getIdUser(String email, String password) {
-        User user = new User(email, password);
-        return daoUsers.getId(user);
+        return dbDaoUsers.getId(new User(email, password));
     }
 
     public boolean checkUser(String email, String password) {
-        User user = new User(email, password);
-        return daoUsers.check(user);
+        return dbDaoUsers.check(new User(email, password));
     }
 
     public Collection<User> getAllUsers() {
-        return daoUsers.getAll();
+        return dbDaoUsers.getAll();
     }
 
     public Collection<User> getAllLikesUser(int userId){
-        return daoUsers.getAllLikes(userId);
+        return dbDaoUsers.getAllLikes(userId);
     }
 
     public void updateUserDate(int userId){
-        daoUsers.updateDate(userId);
+        dbDaoUsers.updateDate(userId);
     }
 }

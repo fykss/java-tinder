@@ -1,7 +1,10 @@
 package dao.daoLiked;
 
 import dto.Like;
+import dto.LikeExtra;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class DbDaoLikes implements DaoLiked<Like> {
 
@@ -52,5 +55,59 @@ public class DbDaoLikes implements DaoLiked<Like> {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    @Override
+    public Collection<Like> getAll(int id){
+        ArrayList<Like> likes = new ArrayList<>();
+        try(PreparedStatement ps = dbConn.prepareStatement("SELECT * FROM OD_88_tinderLiked")){
+            ps.setInt(1, id);
+            ResultSet rSet = ps.executeQuery();
+            while (rSet.next()){
+                Like like = new Like(
+                        rSet.getInt("userId_who"),
+                        rSet.getInt("userId_whom"),
+                        rSet.getDate("date"));
+                likes.add(like);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return likes;
+    }
+
+    public Collection<LikeExtra> getAllLikeUser(int id){
+        ArrayList<LikeExtra> likes = new ArrayList<>();
+        try(PreparedStatement ps = dbConn.prepareStatement("" +
+                "SELECT OD_88_tinderLiked.id,\n" +
+                "       OD_88_tinderLiked.userId_who," +
+                "       OD_88_tinderLiked.userId_whom,\n" +
+                "       OD_88_tinderUsers.date,\n" +
+                "       OD_88_tinderUsers.name,\n" +
+                "       OD_88_tinderUsers.surname,\n" +
+                "       OD_88_tinderUsers.img,\n" +
+                "       OD_88_tinderUsers.position\n" +
+                "FROM OD_88_tinderLiked\n" +
+                "INNER JOIN OD_88_tinderUsers \n" +
+                "  ON OD_88_tinderLiked.userId_whom = OD_88_tinderUsers.id \n" +
+                "WHERE userId_who=?")){
+            ps.setInt(1, id);
+            ResultSet rSet = ps.executeQuery();
+            while (rSet.next()){
+                int idSql = rSet.getInt("id");
+                String userId_whoSql = rSet.getString("userId_who");
+                int userId_whomSql = rSet.getInt("userId_whom");
+                Date dateSql = rSet.getDate("date");
+                String nameSql = rSet.getString("name");
+                String surnameSql = rSet.getString("surname");
+                String imgSql = rSet.getString("img");
+                rSet.getString("position");
+                LikeExtra likeExtra = new LikeExtra();
+                likes.add(likeExtra);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return likes;
     }
 }

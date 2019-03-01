@@ -1,6 +1,5 @@
 package service;
 
-import dao.daoLiked.DaoLiked;
 import dao.daoLiked.DbDaoLikes;
 import dto.Like;
 
@@ -9,18 +8,18 @@ import java.util.Date;
 
 public class ServiceLikes {
 
-    private DaoLiked daoLikes;
+    private DbDaoLikes dbDaoLikes;
 
     public ServiceLikes(Connection dbConn) {
-        this.daoLikes = new DbDaoLikes(dbConn);
+        this.dbDaoLikes = new DbDaoLikes(dbConn);
     }
 
     public void saveLike(Like like){
-        daoLikes.save(like);
+        dbDaoLikes.save(like);
     }
 
     public void updateLike(Like like){
-        daoLikes.update(like);
+        dbDaoLikes.update(like);
     }
 
     public Like createLike(Date date, int... var){
@@ -32,7 +31,7 @@ public class ServiceLikes {
     }
 
     public boolean checkLike(Like like){
-        return daoLikes.check(like);
+        return dbDaoLikes.check(like);
     }
 
 }
