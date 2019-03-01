@@ -30,10 +30,6 @@ public class ServiceUsers {
         return dbDaoUsers.getAll();
     }
 
-    public Collection<User> getAllLikesUser(int userId){
-        return dbDaoUsers.getAllLikes(userId);
-    }
-
     public void updateUserDate(int userId){
         dbDaoUsers.updateDate(userId);
     }

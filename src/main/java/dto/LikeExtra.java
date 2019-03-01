@@ -3,22 +3,16 @@ package dto;
 import java.util.Date;
 
 public class LikeExtra extends Like {
-    private String surnameUser;
     private String nameUser;
+    private String surnameUser;
     private String urlImgUser;
     private String positionUser;
 
-    public LikeExtra(String surnameUser, String nameUser, String urlImgUser, String positionUser) {
-        this.surnameUser = surnameUser;
-        this.nameUser = nameUser;
-        this.urlImgUser = urlImgUser;
-        this.positionUser = positionUser;
-    }
 
-    public LikeExtra(int id, int userIdWho, int userIdWhom, Date date, String surnameUser, String nameUser, String urlImgUser, String positionUser) {
+    public LikeExtra(int id, int userIdWho, int userIdWhom, Date date, String nameUser, String surnameUser, String urlImgUser, String positionUser) {
         super(id, userIdWho, userIdWhom, date);
-        this.surnameUser = surnameUser;
         this.nameUser = nameUser;
+        this.surnameUser = surnameUser;
         this.urlImgUser = urlImgUser;
         this.positionUser = positionUser;
     }

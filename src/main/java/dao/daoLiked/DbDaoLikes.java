@@ -76,7 +76,7 @@ public class DbDaoLikes implements DaoLiked<Like> {
         return likes;
     }
 
-    public Collection<LikeExtra> getAllLikeUser(int id){
+    public Collection<LikeExtra> getAllLikesUser(int idUser){
         ArrayList<LikeExtra> likes = new ArrayList<>();
         try(PreparedStatement ps = dbConn.prepareStatement("" +
                 "SELECT OD_88_tinderLiked.id,\n" +
@@ -91,18 +91,18 @@ public class DbDaoLikes implements DaoLiked<Like> {
                 "INNER JOIN OD_88_tinderUsers \n" +
                 "  ON OD_88_tinderLiked.userId_whom = OD_88_tinderUsers.id \n" +
                 "WHERE userId_who=?")){
-            ps.setInt(1, id);
+            ps.setInt(1, idUser);
             ResultSet rSet = ps.executeQuery();
             while (rSet.next()){
                 int idSql = rSet.getInt("id");
-                String userId_whoSql = rSet.getString("userId_who");
+                int userId_whoSql = rSet.getInt("userId_who");
                 int userId_whomSql = rSet.getInt("userId_whom");
                 Date dateSql = rSet.getDate("date");
                 String nameSql = rSet.getString("name");
                 String surnameSql = rSet.getString("surname");
                 String imgSql = rSet.getString("img");
-                rSet.getString("position");
-                LikeExtra likeExtra = new LikeExtra();
+                String positionSql = rSet.getString("position");
+                LikeExtra likeExtra = new LikeExtra(idSql, userId_whoSql, userId_whomSql, dateSql, nameSql, surnameSql, imgSql, positionSql);
                 likes.add(likeExtra);
             }
         }catch (SQLException e){

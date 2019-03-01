@@ -2,8 +2,10 @@ package service;
 
 import dao.daoLiked.DbDaoLikes;
 import dto.Like;
+import dto.LikeExtra;
 
 import java.sql.Connection;
+import java.util.Collection;
 import java.util.Date;
 
 public class ServiceLikes {
@@ -32,6 +34,10 @@ public class ServiceLikes {
 
     public boolean checkLike(Like like){
         return dbDaoLikes.check(like);
+    }
+
+    public Collection<LikeExtra> getAllLikeUser(int idUser){
+        return dbDaoLikes.getAllLikesUser(idUser);
     }
 
 }

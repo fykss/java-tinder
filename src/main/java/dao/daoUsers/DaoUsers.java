@@ -9,5 +9,4 @@ public interface DaoUsers<T> {
     Collection<T> getAll();
     void add(T item);
     void updateDate(int id);
-    Collection<T> getAllLikes(int id);
 }
