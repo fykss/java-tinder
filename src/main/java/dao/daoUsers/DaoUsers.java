@@ -7,4 +7,7 @@ public interface DaoUsers<T> {
     int getId(T value);
     boolean check(T value);
     Collection<T> getAll();
+    void add(T item);
+    void updateDate(int id);
+    Collection<T> getAllLikes(int id);
 }

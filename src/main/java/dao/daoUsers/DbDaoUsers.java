@@ -14,6 +14,9 @@ public class DbDaoUsers implements DaoUsers<User> {
     }
 
     @Override
+    public void add(User user) {}
+
+    @Override
     public User get(int id) {
         User user = null;
         try (PreparedStatement ps = dbConn.prepareStatement("SELECT id, name, surname, position, img, gender FROM OD_88_tinderUsers WHERE id=?")) {
@@ -89,12 +92,13 @@ public class DbDaoUsers implements DaoUsers<User> {
         return users;
     }
 
-    public Collection<User> getAllLikes(int id) {
+    @Override
+    public Collection<User> getAllLikes(int id){
         ArrayList<User> users = new ArrayList<>();
         try(PreparedStatement ps = dbConn.prepareStatement("" +
                 "SELECT OD_88_tinderLiked.userId_who," +
                 "       OD_88_tinderLiked.userId_whom,\n" +
-                "       OD_88_tinderLiked.date,\n" +
+                "       OD_88_tinderUsers.date,\n" +
                 "       OD_88_tinderUsers.name,\n" +
                 "       OD_88_tinderUsers.surname,\n" +
                 "       OD_88_tinderUsers.img,\n" +
@@ -120,4 +124,16 @@ public class DbDaoUsers implements DaoUsers<User> {
         }
         return users;
     }
+
+    @Override
+    public void updateDate(int id){
+        try(PreparedStatement ps = dbConn.prepareStatement("UPDATE OD_88_tinderUsers SET date = ? WHERE id = ?")) {
+            ps.setTimestamp(1, new Timestamp(System.currentTimeMillis() + 2*60*60*1000));
+            ps.setInt(2, id);
+            ps.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 }

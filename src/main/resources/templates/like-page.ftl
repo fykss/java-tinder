@@ -18,6 +18,7 @@
 <body style="background-color: #f5f5f5;">
 
 <div class="col-4 offset-4">
+
     <div class="card">
         <div class="card-body">
             <div class="row">

@@ -2,7 +2,6 @@ package dao.daoLiked;
 
 import dto.Like;
 import java.sql.*;
-import java.util.Collection;
 
 public class DbDaoLikes implements DaoLiked<Like> {
 

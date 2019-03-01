@@ -37,11 +37,12 @@ body {
     border-bottom-left-radius: 0;
 }
 .form-signin input[type="password"] {
-    margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-
+.form-control-link{
+    margin-top: 10px;
+}
 i {  vertical-align: middle; }
 .table-users tbody tr:hover {
     cursor: pointer;
@@ -377,4 +378,18 @@ input:focus{
 }
 .error_box-span-email, .error_box-title{
     font-weight: bold;
+}
+.radio {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: bold;
+    color: #505050;
+}
+.radio_input{
+    display: flex;
+    align-items: center;
+}
+.radio_input-item{
+    padding-left: 5px;
 }

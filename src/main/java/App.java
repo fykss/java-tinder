@@ -5,10 +5,7 @@ import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import service.ServiceUsers;
-import servlet.ServletLogin;
-import servlet.ServletPeopleList;
-import servlet.ServletTemplates;
-import servlet.ServletUsers;
+import servlet.*;
 
 import javax.servlet.DispatcherType;
 import java.sql.Connection;
@@ -22,7 +19,8 @@ public class App {
         handler.addServlet(ServletTemplates.class, "/src/main/resources/templates/css/*");
         handler.addServlet(new ServletHolder(new ServletLogin(dbConn)), "/login/*");
         handler.addServlet(new ServletHolder(new ServletUsers(dbConn)), "/users/*");
-        handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked");
+        handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked/*");
+        handler.addServlet(new ServletHolder(new ServletRegistration(dbConn)), "/reg/*");
 
         handler.addFilter(new FilterHolder(new FilterLogin()), "/users/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 

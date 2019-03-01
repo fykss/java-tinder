@@ -13,6 +13,7 @@ public class User {
     private String urlImg;
     private String gender;
     private Date date;
+    private String timeDif;
 
     public User(){}
 
@@ -122,4 +123,11 @@ public class User {
         this.date = date;
     }
 
+    public String getTimeDif() {
+        return timeDif;
+    }
+
+    public void setTimeDif(String timeDif) {
+        this.timeDif = timeDif;
+    }
 }

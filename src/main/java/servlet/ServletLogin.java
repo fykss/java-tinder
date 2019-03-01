@@ -44,9 +44,11 @@ public class ServletLogin extends HttpServlet {
 //            return serviceUsers.checkUser(email, password);
 //        }).findFirst().get();
         if(serviceUsers.checkUser(email,password)){
-            Cookie cookie = new CookieUtil().addCookie("tinderUser", Integer.toString(serviceUsers.getIdUser(email,password)));
+            int idUser = serviceUsers.getIdUser(email, password);
+            Cookie cookie = new CookieUtil().addCookie("tinderUser", Integer.toString(idUser));
             resp.addCookie(cookie);
             resp.sendRedirect("/users");
+            serviceUsers.updateUserDate(idUser);
             data.put("condition", serviceUsers.checkUser(email,password));
             freemarker.render("login_error.ftl",data,resp);
         }else {

@@ -18,7 +18,7 @@
 
 <body class="text-center">
         <form class="form-signin" action="/login" method="post">
-            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/TinderLogo-2017.svg/2000px-TinderLogo-2017.svg.png" alt="" width="220" height="55">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
             <label for="inputEmail" class="sr-only">Email address</label>
@@ -29,7 +29,7 @@
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-            <p class="mt-5 mb-3 text-muted">&copy; Tinder 2018</p>
+            <p class="mt-5 mb-3 text-muted">&copy; Tinder 2019</p>
         </form>
 </body>
 </html>
