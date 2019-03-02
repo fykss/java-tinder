@@ -10,8 +10,6 @@ public interface DaoUsers<T> {
     boolean check(T value);
     Collection<T> getAll();
     void add(T item);
-
     Collection<User> getAllLikes(int id);
-
     void updateDate(int id);
 }

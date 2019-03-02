@@ -1,6 +1,7 @@
 package servlet;
 
 import dto.LikeExtra;
+import dto.User;
 import service.ServiceLikes;
 import service.ServiceUsers;
 import utils.CookieUtil;

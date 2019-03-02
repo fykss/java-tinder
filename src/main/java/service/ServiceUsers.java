@@ -4,7 +4,9 @@ import dao.daoUsers.DbDaoUsers;
 import dto.User;
 
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 public class ServiceUsers {
 
@@ -37,4 +39,14 @@ public class ServiceUsers {
     public void updateUserDate(int userId){
         dbDaoUsers.updateDate(userId);
     }
+
+    public void addUser(String name, String surname, String password, String position, String email, String urlImg, String gender){
+        User user = new User(name, surname, password, position, email, urlImg, gender, new Timestamp(System.currentTimeMillis()));
+        dbDaoUsers.add(user);
+    }
+
+    public boolean checkEmail(String email){
+        return dbDaoUsers.checkEmail(email);
+    }
+
 }

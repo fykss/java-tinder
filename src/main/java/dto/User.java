@@ -57,6 +57,17 @@ public class User {
         this.gender = gender;
     }
 
+    public User(String name, String surname, String password, String position, String email, String urlImg, String gender, Date date) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.position = position;
+        this.email = email;
+        this.urlImg = urlImg;
+        this.gender = gender;
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }
