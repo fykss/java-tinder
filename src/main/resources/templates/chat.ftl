@@ -80,8 +80,9 @@
                         <div class="col-md-2 options-left">
                             <i class="fa fa-smile-o"></i>
                         </div>
+                        <form action="/messages?id=${idRecipient}" id="mess" method="post"></form>
                         <div class="col-md-7 pl-0">
-                            <input type="text" class="border-0" placeholder=" Send message" />
+                            <input form="mess" name="messageText" type="text" class="border-0" placeholder="Send message" accesskey="ENTER"/>
                         </div>
                         <div class="col-md-3 text-right options-right">
                             <i class="fa fa-picture-o mr-2"></i>
