@@ -36,7 +36,7 @@ public class ServletPeopleList extends HttpServlet {
         int idUser = new CookieUtil().getIdUser(req.getCookies());
 //        Collection<LikeExtra> allLikeUser = serviceLikes.getAllLikeUser(idUser);
         Collection<User> allLikedUser = serviceUsers.getAllLikedUsers(idUser);
-        allLikedUser.stream().forEach(user -> user.setTimeDif(describeTimeDif((Date)user.getDate())));
+        allLikedUser.forEach(user -> user.setTimeDif(describeTimeDif((Date)user.getDate())));
         data.put("listUsers", allLikedUser);
         freemarker.render("people-list.ftl", data,resp);
     }

@@ -5,6 +5,7 @@ import dto.Message;
 import dto.MessageExtra;
 
 import java.sql.Connection;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 
@@ -16,7 +17,8 @@ public class ServiceMessages {
         this.dbDaoMessages = new DbDaoMessages(dbConn);
     }
 
-    public void addMessage(Message message){
+    public void addMessage(int idSender, int idRecipient, String text){
+        Message message = new Message(idSender, idRecipient, text, new Timestamp(System.currentTimeMillis()));
         dbDaoMessages.add(message);
     }
 

@@ -41,6 +41,9 @@ public class ServletUsers extends HttpServlet {
             while (gender.equals(user.getGender())) {
                 countNext++;
                 user = serviceUsers.getUser(countNext);
+                if(user == null ){
+                    resp.sendRedirect("/liked");
+                }
             }
             data.put("img", user.getUrlImg());
             data.put("name", user.getName());

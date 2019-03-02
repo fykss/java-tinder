@@ -1,7 +1,6 @@
 package servlet;
 
 import dto.Message;
-import dto.MessageExtra;
 import service.ServiceMessages;
 import service.ServiceUsers;
 import utils.CookieUtil;
@@ -32,7 +31,7 @@ public class ServletChat extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUserSender = new CookieUtil().getIdUser(req.getCookies());
         int idUserRecipient = Integer.parseInt(req.getParameter("id"));
-
+        data.put("idRecipient", idUserRecipient);
         data.put("name", serviceUsers.getUser(idUserRecipient).getName());
         data.put("surname", serviceUsers.getUser(idUserRecipient).getSurname());
         data.put("urlImg", serviceUsers.getUser(idUserRecipient).getUrlImg());
@@ -51,6 +50,11 @@ public class ServletChat extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUserSender = new CookieUtil().getIdUser(req.getCookies());
+        int idUserRecipient = Integer.parseInt(req.getParameter("id"));
+        String messageText = req.getParameter("messageText");
+        serviceMessages.addMessage(idUserSender,idUserRecipient,messageText);
+        doGet(req, resp);
 
     }
 }
