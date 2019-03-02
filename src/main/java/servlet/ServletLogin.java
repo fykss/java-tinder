@@ -49,8 +49,6 @@ public class ServletLogin extends HttpServlet {
             resp.addCookie(cookie);
             resp.sendRedirect("/users");
             serviceUsers.updateUserDate(idUser);
-            data.put("condition", serviceUsers.checkUser(email,password));
-            freemarker.render("login_error.ftl",data,resp);
         }else {
             resp.setHeader("Refresh","3; URL=/login");
             data.put("error", email);

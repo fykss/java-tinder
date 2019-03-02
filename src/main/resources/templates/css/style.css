@@ -379,6 +379,19 @@ input:focus{
 .error_box-span-email, .error_box-title{
     font-weight: bold;
 }
+.success_box{
+    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
+}
+.success_box-title{
+    color: #55a95c;
+    font-size: 18px;
+}
+.success_box-span-email, .error_box-title{
+    font-weight: bold;
+}
+
 .radio {
     margin-top: 10px;
     display: flex;

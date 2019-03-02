@@ -33,19 +33,19 @@ public class ServletRegistration extends HttpServlet {
         String position = req.getParameter("position");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String passwordConfirm = req.getParameter("passwordConfirm");
         String urlImg = req.getParameter("urlImg");
         String gender = req.getParameter("gender");
 
-        System.out.println(name);
-        System.out.println(surname);
-        System.out.println(position);
-        System.out.println(email);
-        System.out.println(password);
-        System.out.println(passwordConfirm);
-        System.out.println(urlImg);
-        System.out.println(gender);
-
-        freemarker.render("registration.html", data,resp);
+        if(serviceUsers.checkEmail(email)){
+            resp.setHeader("Refresh","3; URL=/reg");
+            data.put("error_email", email);
+            freemarker.render("reg_error.ftl", data,resp);
+        }else {
+            serviceUsers.addUser(name,surname,password,position,email,urlImg,gender);
+            resp.setHeader("Refresh","3; URL=/login");
+            data.put("name", name);
+            data.put("surname", surname);
+            freemarker.render("reg_success.ftl", data,resp);
+        }
     }
 }

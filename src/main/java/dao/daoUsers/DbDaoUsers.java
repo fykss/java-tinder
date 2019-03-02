@@ -14,7 +14,22 @@ public class DbDaoUsers implements DaoUsers<User> {
     }
 
     @Override
-    public void add(User user) {}
+    public void add(User user) {
+        try(PreparedStatement ps = dbConn.prepareStatement("insert into OD_88_tinderUsers(id, name, surname, position, email, password, date, img, gender) values (?,?,?,?,?,?,?,?,?)")){
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getSurname());
+            ps.setString(4, user.getPosition());
+            ps.setString(5, user.getEmail());
+            ps.setString(6, user.getPassword());
+            ps.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+            ps.setString(8, user.getUrlImg());
+            ps.setString(9, user.getGender());
+            ps.execute();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public User get(int id) {
@@ -134,6 +149,21 @@ public class DbDaoUsers implements DaoUsers<User> {
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public boolean checkEmail(String email) {
+        boolean flag = false;
+        try (PreparedStatement ps = dbConn.prepareStatement("SELECT email FROM OD_88_tinderUsers where email=?")) {
+            ps.setString(1, email);
+            ResultSet rSet = ps.executeQuery();
+            while (rSet.next()) {
+                String emailSql = rSet.getString(1);
+                flag = email.equals(emailSql);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
     }
 
 }
