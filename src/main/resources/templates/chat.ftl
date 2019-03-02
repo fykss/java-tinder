@@ -52,14 +52,14 @@
                     <ul class="p-0">
 
                         <#list listMsg as msg>
-
+                            <#if msg.getSender()== idUser>
                                 <li class="send-msg float-right mb-2">
                                     <p class="pt-1 pb-1 pl-2 pr-2 m-0 rounded">
                                         ${msg.getTextMessage()}
                                     </p>
                                     <span class="receive-msg-time">${msg.getDate()}</span>
                                 </li>
-
+                            <#else>
                                 <li class="receive-msg float-left mb-2">
                                     <div class="sender-img">
                                         <img src="${urlImg}" class="float-left">
@@ -71,12 +71,8 @@
                                         <span class="receive-msg-time">${name}, ${msg.getDate()}</span>
                                     </div>
                                 </li>
-
+                            </#if>
                         </#list>
-
-
-
-
                     </ul>
                 </div>
                 <div class="col-md-12 p-2 msg-box border border-primary">
