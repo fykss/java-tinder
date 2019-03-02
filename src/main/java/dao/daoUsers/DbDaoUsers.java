@@ -92,38 +92,38 @@ public class DbDaoUsers implements DaoUsers<User> {
         return users;
     }
 
-//    @Override
-//    public Collection<User> getAllLikes(int id){
-//        ArrayList<User> users = new ArrayList<>();
-//        try(PreparedStatement ps = dbConn.prepareStatement("" +
-//                "SELECT OD_88_tinderLiked.userId_who," +
-//                "       OD_88_tinderLiked.userId_whom,\n" +
-//                "       OD_88_tinderUsers.date,\n" +
-//                "       OD_88_tinderUsers.name,\n" +
-//                "       OD_88_tinderUsers.surname,\n" +
-//                "       OD_88_tinderUsers.img,\n" +
-//                "       OD_88_tinderUsers.position\n" +
-//                "FROM OD_88_tinderLiked\n" +
-//                "INNER JOIN OD_88_tinderUsers \n" +
-//                "  ON OD_88_tinderLiked.userId_whom = OD_88_tinderUsers.id \n" +
-//                "WHERE userId_who=?")){
-//            ps.setInt(1, id);
-//            ResultSet rSet = ps.executeQuery();
-//            while (rSet.next()){
-//                User user = new User(
-//                        rSet.getInt("userId_whom"),
-//                        rSet.getString("name"),
-//                        rSet.getString("surname"),
-//                        rSet.getString("position"),
-//                        rSet.getString("img"),
-//                        rSet.getDate("date"));
-//                users.add(user);
-//            }
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        return users;
-//    }
+    @Override
+    public Collection<User> getAllLikes(int id){
+        ArrayList<User> users = new ArrayList<>();
+        try(PreparedStatement ps = dbConn.prepareStatement("" +
+                "SELECT OD_88_tinderLiked.userId_who," +
+                "       OD_88_tinderLiked.userId_whom,\n" +
+                "       OD_88_tinderUsers.date,\n" +
+                "       OD_88_tinderUsers.name,\n" +
+                "       OD_88_tinderUsers.surname,\n" +
+                "       OD_88_tinderUsers.img,\n" +
+                "       OD_88_tinderUsers.position\n" +
+                "FROM OD_88_tinderLiked\n" +
+                "INNER JOIN OD_88_tinderUsers \n" +
+                "  ON OD_88_tinderLiked.userId_whom = OD_88_tinderUsers.id \n" +
+                "WHERE userId_who=?")){
+            ps.setInt(1, id);
+            ResultSet rSet = ps.executeQuery();
+            while (rSet.next()){
+                User user = new User(
+                        rSet.getInt("userId_whom"),
+                        rSet.getString("name"),
+                        rSet.getString("surname"),
+                        rSet.getString("position"),
+                        rSet.getString("img"),
+                        rSet.getDate("date"));
+                users.add(user);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return users;
+    }
 
     @Override
     public void updateDate(int id){

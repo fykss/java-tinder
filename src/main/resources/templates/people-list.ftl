@@ -30,30 +30,36 @@
                             <table class="table-users table" border="0">
                                 <tbody>
                                 <#list listUsers as listItem>
-                                    <tr>
-                                        <td width="10">
+                                    <tr class="table_row">
+                                        <td class="align_left" width="10">
+                                            <label class="list_label" for="${listItem.getId()}">
                                             <div class="avatar-img">
                                                 <img class="img-circle" src="${listItem.getUrlImg()}" />  
                                             </div>
+                                            </label>
                                         </td>
                                         <td class="align-middle">
+                                            <label class="list_label" for="${listItem.getId()}">
                                             ${listItem.getName()} ${listItem.getSurname()}
+                                            </label>
                                         </td>
                                         <td class="align-middle">
+                                            <label class="list_label" for="${listItem.getId()}">
                                             ${listItem.getPosition()}
+                                            </label>
                                         </td>
                                         <td  class="align-middle">
+                                            <label class="list_label" for="${listItem.getId()}">
                                             Last Login:  ${listItem.getDate()}<br>
                                             <small class="text-muted">
                                                 ${listItem.getTimeDif()}
                                             </small>
+                                            </label>
                                         </td>
-                                        <td>
-                                            <button class="btn_submit" form="form_like" type="submit" name="userId" value="${listItem.getId()}">Send</button>
-                                        </td>
+                                        <button style="display: none" id="${listItem.getId()}" class="btn_submit" form="form_like" type="submit" name="userId" value="${listItem.getId()}">Send</button>
                                     </tr>
-                                </#list>
                                 </tbody>
+                                </#list>
                             </table>
                     </div>
                 </div>

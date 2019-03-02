@@ -34,10 +34,10 @@ public class ServletPeopleList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUser = new CookieUtil().getIdUser(req.getCookies());
-        Collection<LikeExtra> allLikeUser = serviceLikes.getAllLikeUser(idUser);
-//        Collection<User> allLikesUser = serviceUsers.getAllLikesUser(idUser);
-//        allLikesUser.stream().forEach(user -> user.setTimeDif(describeTimeDif((Date)user.getDate())));
-        data.put("listUsers", allLikeUser);
+//        Collection<LikeExtra> allLikeUser = serviceLikes.getAllLikeUser(idUser);
+        Collection<User> allLikedUser = serviceUsers.getAllLikedUsers(idUser);
+        allLikedUser.stream().forEach(user -> user.setTimeDif(describeTimeDif((Date)user.getDate())));
+        data.put("listUsers", allLikedUser);
         freemarker.render("people-list.ftl", data,resp);
     }
 
