@@ -77,7 +77,7 @@ public class DbDaoMessages implements DaoMessage<Message> {
                         rSet.getInt("sender"),
                         rSet.getInt("recipient"),
                         rSet.getString("message"),
-                        rSet.getDate("date")
+                        rSet.getTimestamp("date")
                 );
                 messages.add(message);
             }
