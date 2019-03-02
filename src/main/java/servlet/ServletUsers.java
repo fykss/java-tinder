@@ -1,19 +1,17 @@
 package servlet;
-
 import dto.Like;
 import dto.User;
 import utils.CookieUtil;
 import utils.Freemarker;
 import service.ServiceLikes;
 import service.ServiceUsers;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 public class ServletUsers extends HttpServlet {
@@ -35,13 +33,12 @@ public class ServletUsers extends HttpServlet {
         String gender = serviceUsers.getUser(idUserNotShow).getGender();
 
         User user = serviceUsers.getUser(countNext);
-        if(user == null ){
-            resp.sendRedirect("/liked");
-        }else {
+        if(user != null ){
             while (gender.equals(user.getGender())) {
                 countNext++;
                 user = serviceUsers.getUser(countNext);
                 if(user == null ){
+                    countNext = 1;
                     resp.sendRedirect("/liked");
                 }
             }
@@ -51,6 +48,9 @@ public class ServletUsers extends HttpServlet {
             data.put("id", user.getId());
             freemarker.render("like-page.ftl", data,resp);
             countNext++;
+        }else {
+            countNext = 1;
+            resp.sendRedirect("/liked");
         }
     }
 
@@ -59,11 +59,13 @@ public class ServletUsers extends HttpServlet {
         String dislike = req.getParameter("dislike");
         String like = req.getParameter("like");
 
+        int idWho = new CookieUtil().getIdUser(req.getCookies());
+
         if(like != null){
-            int IdWho = new CookieUtil().getIdUser(req.getCookies());
             int idWhom = Integer.parseInt(like);
-            Like likeWhom = serviceLikes.createLike(new Date(System.currentTimeMillis()), IdWho, idWhom);
-            if(serviceLikes.checkLike(likeWhom)){
+            Like likeWhom = serviceLikes.createLike(new Timestamp(System.currentTimeMillis()), idWho, idWhom);
+
+            if(serviceLikes.checkLike(idWho, idWhom)){
                 serviceLikes.updateLike(likeWhom);
                 doGet(req,resp);
             }else{
@@ -71,7 +73,15 @@ public class ServletUsers extends HttpServlet {
                 doGet(req,resp);
             }
         }else if(dislike != null){
-            doGet(req,resp);
+
+            int idWhom = Integer.parseInt(dislike);
+
+            if (serviceLikes.checkLike(idWho, idWhom)){
+                serviceLikes.delLike(idWho, idWhom);
+                doGet(req,resp);
+            } else {
+                doGet(req,resp);
+            }
         }
     }
 }

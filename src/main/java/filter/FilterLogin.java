@@ -1,7 +1,5 @@
 package filter;
 
-import utils.CookieUtil;
-
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,18 +13,6 @@ public class FilterLogin implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        HttpServletRequest req = (HttpServletRequest) request;
-//        HttpServletResponse resp = (HttpServletResponse) response;
-//
-//        CookieUtil cookieUtil = new CookieUtil();
-//        if(cookieUtil.checkCookie(req.getCookies())){
-//            chain.doFilter(req, resp);
-//        }else {
-//            resp.sendRedirect("/login");
-//        }
-//    }
-
-
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpServletRequest req = (HttpServletRequest) request;
         Cookie[] cookies = req.getCookies();

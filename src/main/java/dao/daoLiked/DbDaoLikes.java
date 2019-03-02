@@ -26,6 +26,17 @@ public class DbDaoLikes implements DaoLiked<Like> {
     }
 
     @Override
+    public void del(Like like) {
+        try(PreparedStatement ps = dbConn.prepareStatement("DELETE FROM OD_88_tinderLiked WHERE userId_who=? and userId_whom=?")){
+            ps.setInt(1, like.getUserIdWho());
+            ps.setInt(2, like.getUserIdWhom());
+            ps.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void update(Like like) {
         try(PreparedStatement ps = dbConn.prepareStatement("update OD_88_tinderLiked set date=? where userId_who=? and userId_whom=?")){
             ps.setTimestamp(1, new Timestamp(like.getDate().getTime()));

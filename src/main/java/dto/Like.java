@@ -24,6 +24,11 @@ public class Like {
         this.date = date;
     }
 
+    public Like(int idWho, int idWhom) {
+        this.userIdWho = idWho;
+        this.userIdWhom = idWhom;
+    }
+
     public int getId() {
         return id;
     }

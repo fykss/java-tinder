@@ -23,7 +23,7 @@ public class App {
         handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked/*");
         handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/messages/*");
 
-        handler.addFilter(new FilterHolder(new FilterLogin()), "/users/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+        handler.addFilter(new FilterHolder(new FilterLogin()), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
         Server server = new Server(8080);
         server.setHandler(handler);

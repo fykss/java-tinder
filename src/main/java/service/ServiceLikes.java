@@ -3,7 +3,6 @@ package service;
 import dao.daoLiked.DbDaoLikes;
 import dto.Like;
 import dto.LikeExtra;
-
 import java.sql.Connection;
 import java.util.Collection;
 import java.util.Date;
@@ -20,6 +19,11 @@ public class ServiceLikes {
         dbDaoLikes.save(like);
     }
 
+    public void delLike(int idWho,int idWhom){
+        Like like = new Like(idWho, idWhom);
+        dbDaoLikes.del(like);
+    }
+
     public void updateLike(Like like){
         dbDaoLikes.update(like);
     }
@@ -32,7 +36,8 @@ public class ServiceLikes {
         return like;
     }
 
-    public boolean checkLike(Like like){
+    public boolean checkLike(int idWho, int idWhom){
+        Like like = new Like(idWho, idWhom);
         return dbDaoLikes.check(like);
     }
 
@@ -40,4 +45,7 @@ public class ServiceLikes {
         return dbDaoLikes.getAllLikesUser(idUser);
     }
 
+    public Collection<Like> getAllLike(int idUser){
+        return dbDaoLikes.getAll(idUser);
+    }
 }
