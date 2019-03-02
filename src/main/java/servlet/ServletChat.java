@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ServletChat extends HttpServlet {
 
@@ -38,8 +38,14 @@ public class ServletChat extends HttpServlet {
         data.put("urlImg", serviceUsers.getUser(idUserRecipient).getUrlImg());
 
         Collection<Message> allMessages = serviceMessages.getAllMessages(idUserSender, idUserRecipient);
+        Collection<Message> allMessages2 = serviceMessages.getAllMessages(idUserRecipient, idUserSender);
+        allMessages.addAll(allMessages2);
+        List<Message> collect = allMessages.stream().sorted(Comparator.comparing(Message::getDate)).collect(Collectors.toList());
+        // sort(Comparator.comparing(o -> o.getDateTime()));
+        data.put("idUser", idUserSender);
 
-        data.put("listMsg", allMessages);
+
+        data.put("listMsg", collect);
         freemarker.render("chat.ftl",data,resp);
     }
 

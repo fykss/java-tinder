@@ -6,6 +6,7 @@ import dto.MessageExtra;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class DbDaoMessages implements DaoMessage<Message> {
 
@@ -66,7 +67,7 @@ public class DbDaoMessages implements DaoMessage<Message> {
 
     @Override
     public Collection<Message> getAll(int idSender, int idRecipient) {
-        ArrayList<Message> messages = new ArrayList<>();
+        List<Message> messages = new ArrayList<>();
         try(PreparedStatement ps = dbConn.prepareStatement("SELECT * from OD_88_tinderMessage where sender=? and recipient=?")){
             ps.setInt(1, idSender);
             ps.setInt(2, idRecipient);

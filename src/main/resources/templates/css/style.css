@@ -393,3 +393,11 @@ input:focus{
 .radio_input-item{
     padding-left: 5px;
 }
+
+.list_label{
+    display: block;
+    min-height: 50px;
+    margin: 0;
+    cursor: pointer;
+}
+
