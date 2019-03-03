@@ -2,7 +2,6 @@ package servlet;
 
 import service.ServiceUsers;
 import utils.Freemarker;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

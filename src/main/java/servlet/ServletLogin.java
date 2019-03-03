@@ -3,7 +3,6 @@ package servlet;
 import utils.CookieUtil;
 import utils.Freemarker;
 import service.ServiceUsers;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -34,15 +33,6 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-//        Boolean prmExists = Stream.of(req.getParameterMap()).map(stringMap -> {
-//            String[] emails = stringMap.get("email");
-//            String email = Stream.of(emails).findFirst().get();
-//
-//            String[] passwords = stringMap.get("password");
-//            String password = Stream.of(passwords).findFirst().get();
-//
-//            return serviceUsers.checkUser(email, password);
-//        }).findFirst().get();
         if(serviceUsers.checkUser(email,password)){
             int idUser = serviceUsers.getIdUser(email, password);
             Cookie cookie = new CookieUtil().addCookie("tinderUser", Integer.toString(idUser));

@@ -1,6 +1,7 @@
 package utils;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 public class CookieUtil {
 
@@ -14,10 +15,11 @@ public class CookieUtil {
         return result;
     }
 
-    public void killCookie(Cookie[] cookies){
+    public void killCookie(Cookie[] cookies, HttpServletResponse resp){
         for(Cookie cookie:cookies){
             if(cookie.getName().equals("tinderUser")){
                 cookie.setMaxAge(0);
+                resp.addCookie(cookie);
             }
         }
     }

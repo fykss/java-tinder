@@ -5,7 +5,6 @@ import service.ServiceMessages;
 import service.ServiceUsers;
 import utils.CookieUtil;
 import utils.Freemarker;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,15 +34,11 @@ public class ServletChat extends HttpServlet {
         data.put("name", serviceUsers.getUser(idUserRecipient).getName());
         data.put("surname", serviceUsers.getUser(idUserRecipient).getSurname());
         data.put("urlImg", serviceUsers.getUser(idUserRecipient).getUrlImg());
-
         Collection<Message> allMessages = serviceMessages.getAllMessages(idUserSender, idUserRecipient);
         Collection<Message> allMessages2 = serviceMessages.getAllMessages(idUserRecipient, idUserSender);
         allMessages.addAll(allMessages2);
         List<Message> collect = allMessages.stream().sorted(Comparator.comparing(Message::getDate)).collect(Collectors.toList());
-        // sort(Comparator.comparing(o -> o.getDateTime()));
         data.put("idUser", idUserSender);
-
-
         data.put("listMsg", collect);
         freemarker.render("chat.ftl",data,resp);
     }
@@ -55,6 +50,5 @@ public class ServletChat extends HttpServlet {
         String messageText = req.getParameter("messageText");
         serviceMessages.addMessage(idUserSender,idUserRecipient,messageText);
         doGet(req, resp);
-
     }
 }

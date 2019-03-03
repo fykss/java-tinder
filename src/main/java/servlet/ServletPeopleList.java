@@ -1,8 +1,6 @@
 package servlet;
 
-import dto.LikeExtra;
 import dto.User;
-import service.ServiceLikes;
 import service.ServiceUsers;
 import utils.CookieUtil;
 import utils.Freemarker;
@@ -39,7 +37,6 @@ public class ServletPeopleList extends HttpServlet {
         allLikedUser.forEach(user -> user.setTimeDif(describeTimeDif((Date)user.getDate())));
         data.put("listUsers", allLikedUser);
         freemarker.render("people-list.ftl", data,resp);
-
     }
 
     @Override
