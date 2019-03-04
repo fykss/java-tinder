@@ -2,7 +2,6 @@ package service;
 
 import dao.daoMessage.DbDaoMessages;
 import dto.Message;
-import dto.MessageExtra;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
@@ -34,7 +33,7 @@ public class ServiceMessages {
         return dbDaoMessages.getAll(idSender,idRecipient);
     }
 
-    public Collection<MessageExtra> getAllMessagesExtra(int idSender, int idRecipient){
-        return dbDaoMessages.getAllMsgExtra(idSender,idRecipient);
-    }
+//    public Collection<MessageExtra> getAllMessagesExtra(int idSender, int idRecipient){
+//        return dbDaoMessages.getAllMsgExtra(idSender,idRecipient);
+//    }
 }

@@ -26,7 +26,7 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Files.copy(Paths.get("src/main/resources/templates/login.ftl"), resp.getOutputStream());
+        freemarker.render("login.ftl",data,resp);
     }
 
     @Override
