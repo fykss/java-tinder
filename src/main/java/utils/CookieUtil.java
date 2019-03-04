@@ -15,13 +15,14 @@ public class CookieUtil {
         return result;
     }
 
-    public void killCookie(Cookie[] cookies, HttpServletResponse resp){
+    public HttpServletResponse killCookie(Cookie[] cookies, HttpServletResponse resp){
         for(Cookie cookie:cookies){
             if(cookie.getName().equals("tinderUser")){
                 cookie.setMaxAge(0);
                 resp.addCookie(cookie);
             }
         }
+        return resp;
     }
 
     public boolean checkCookie(Cookie[] cookies){

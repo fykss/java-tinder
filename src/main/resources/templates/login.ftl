@@ -7,13 +7,14 @@
     <meta name="author" content="">
     <title>Signin Template for Bootstrap</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="/target/classes/templates/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./target/classes/templates/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="/target/classes/templates/css/style.css">
+    <link rel="stylesheet" href="./target/classes/templates/css/style.css">
 </head>
 
 <body class="text-center">
+
         <form class="form-signin" action="/login" method="post">
             <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/TinderLogo-2017.svg/2000px-TinderLogo-2017.svg.png" alt="" width="220" height="55">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -28,5 +29,6 @@
             <a href="/reg" class="link">Registration</a>
             <p class="mt-5 mb-3 text-muted">&copy; Tinder 2019</p>
         </form>
+
 </body>
 </html>
