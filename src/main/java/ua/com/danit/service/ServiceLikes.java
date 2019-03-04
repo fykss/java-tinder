@@ -1,7 +1,7 @@
-package service;
+package ua.com.danit.service;
 
-import dao.daoLiked.DbDaoLikes;
-import dto.Like;
+import ua.com.danit.dao.daoLiked.DbDaoLikes;
+import ua.com.danit.dto.Like;
 
 import java.sql.Connection;
 import java.util.Collection;

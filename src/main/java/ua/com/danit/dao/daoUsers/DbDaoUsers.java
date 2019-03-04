@@ -1,6 +1,7 @@
-package dao.daoUsers;
+package ua.com.danit.dao.daoUsers;
 
-import dto.User;
+import ua.com.danit.dto.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;

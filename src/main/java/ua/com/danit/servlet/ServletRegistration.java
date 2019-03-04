@@ -1,7 +1,8 @@
-package servlet;
+package ua.com.danit.servlet;
 
-import service.ServiceUsers;
-import utils.Freemarker;
+import ua.com.danit.service.ServiceUsers;
+import ua.com.danit.utils.Freemarker;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

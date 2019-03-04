@@ -1,10 +1,10 @@
-import dbConnection.DbConnection;
+package ua.com.danit;
+
+import ua.com.danit.dbConnection.DbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
 
 public class AppDb {
     public static void main(String[] args) throws SQLException {

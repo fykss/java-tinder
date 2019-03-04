@@ -1,4 +1,4 @@
-package dao.daoLiked;
+package ua.com.danit.dao.daoLiked;
 
 import java.util.Collection;
 

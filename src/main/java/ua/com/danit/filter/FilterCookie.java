@@ -1,6 +1,6 @@
-package filter;
+package ua.com.danit.filter;
 
-import utils.CookieUtil;
+import ua.com.danit.utils.CookieUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
@@ -19,13 +19,11 @@ public class FilterCookie implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         Cookie[] cookies = req.getCookies();
 
-
-//        String logout = req.getParameter("logout");
         if (req.getServletPath().equals("/logout")){
             resp = new CookieUtil().killCookie(req.getCookies(), resp);
             resp.sendRedirect("/login");
         } else{
-            if (req.getServletPath().equals("/login") || req.getServletPath().equals("/reg") || req.getServletPath().equals("/target/classes/templates/css")) {
+            if (req.getServletPath().equals("/login") || req.getServletPath().equals("/reg") || req.getServletPath().equals("/templates/css")) {
                 chain.doFilter(req, resp);
             } else {
                 if (cookies != null && cookies.length != 0) {

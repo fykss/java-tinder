@@ -1,4 +1,4 @@
-package dto;
+package ua.com.danit.dto;
 
 
 import java.util.Date;
