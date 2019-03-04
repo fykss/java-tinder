@@ -19,8 +19,6 @@ public class FilterCookie implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         Cookie[] cookies = req.getCookies();
 
-
-//        String logout = req.getParameter("logout");
         if (req.getServletPath().equals("/logout")){
             resp = new CookieUtil().killCookie(req.getCookies(), resp);
             resp.sendRedirect("/login");

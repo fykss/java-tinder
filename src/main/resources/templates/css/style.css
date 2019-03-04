@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    position: relative;
 }
 
 body {
@@ -97,6 +98,7 @@ i {  vertical-align: middle; }
 .img-circle {
     border-radius: 50%;
     width: 70px;
+    margin: 0 auto;
 }
 
 .chat
@@ -414,3 +416,23 @@ input:focus{
     cursor: pointer;
 }
 
+#open{
+    /*display: none;*/
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+}
+.width{
+    width: 500px;
+}
+.align-middle-my{
+    width: 26%;
+    text-align: center;
+}
+.link_page{
+    display: flex;
+    justify-content: space-between;
+}
+.chat_open{
+    display: block;
+}

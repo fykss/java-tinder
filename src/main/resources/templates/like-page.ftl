@@ -18,8 +18,16 @@
 <body style="background-color: #f5f5f5;">
 
 <div class="col-4 offset-4">
-
+    <div class="link_page">
+        <div>
+            <a href="/liked">Liked list</a>
+        </div>
+        <div>
+            <a href="/logout">LogOut</a>
+        </div>
+    </div>
     <div class="card">
+
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 text-center">
@@ -46,8 +54,6 @@
         <!--/card-block-->
     </div>
 </div>
-<a href="/logout">LogOut</a>
-
 
 </body>
 </html>

@@ -20,7 +20,7 @@ public class App {
         handler.addServlet(new ServletHolder(new ServletLogin(dbConn)), "/login/*");
         handler.addServlet(new ServletHolder(new ServletUsers(dbConn)), "/users/*");
         handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked/*");
-        handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/messages/*");
+        handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/liked/message");
 //        handler.addServlet(new ServletHolder(new ServletLogout()), "/");
         handler.addFilter(new FilterHolder(new FilterCookie()), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
