@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
-
     <title>Signin Template for Bootstrap</title>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="/target/classes/templates/css/bootstrap.min.css">
 
@@ -28,7 +25,7 @@
             <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
+            <a href="/reg" class="link">Registration</a>
             <p class="mt-5 mb-3 text-muted">&copy; Tinder 2019</p>
         </form>
 </body>

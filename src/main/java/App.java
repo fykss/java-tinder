@@ -15,7 +15,7 @@ public class App {
         Connection dbConn = new DbConnection().connection();
         ServletContextHandler handler = new ServletContextHandler();
 
-        handler.addServlet(ServletTemplates.class, "/target/classes/templates/css/*");
+        handler.addServlet(ServletTemplates.class, "/src/main/resources/templates/css/*");
         handler.addServlet(new ServletHolder(new ServletRegistration(dbConn)), "/reg/*");
         handler.addServlet(new ServletHolder(new ServletLogin(dbConn)), "/login/*");
         handler.addServlet(new ServletHolder(new ServletUsers(dbConn)), "/users/*");

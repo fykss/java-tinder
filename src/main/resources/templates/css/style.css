@@ -413,4 +413,13 @@ input:focus{
     margin: 0;
     cursor: pointer;
 }
+.link{
+    margin-top: 10px;
+    display: inline-block;
+    color: #fe3a72;
+}
+.link:hover{
+    color: #1d2124;
+}
+
 
