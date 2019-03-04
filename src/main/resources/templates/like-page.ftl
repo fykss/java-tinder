@@ -46,6 +46,8 @@
         <!--/card-block-->
     </div>
 </div>
+<a href="/logout">LogOut</a>
+
 
 </body>
 </html>
