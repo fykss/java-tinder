@@ -1,6 +1,6 @@
-package dao.daoLiked;
+package ua.com.danit.dao.daoLiked;
 
-import dto.Like;
+import ua.com.danit.dto.Like;
 
 import java.sql.*;
 import java.util.ArrayList;

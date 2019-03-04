@@ -1,7 +1,7 @@
-package service;
+package ua.com.danit.service;
 
-import dao.daoMessage.DbDaoMessages;
-import dto.Message;
+import ua.com.danit.dao.daoMessage.DbDaoMessages;
+import ua.com.danit.dto.Message;
 
 import java.sql.Connection;
 import java.sql.Timestamp;

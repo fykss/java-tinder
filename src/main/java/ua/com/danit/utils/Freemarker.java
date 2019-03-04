@@ -1,4 +1,4 @@
-package utils;
+package ua.com.danit.utils;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -13,23 +13,17 @@ import java.util.Map;
 public class Freemarker {
     private final Configuration config;
 
-    public Freemarker(final String path) {
+    public Freemarker() {
         this.config = new Configuration(Configuration.VERSION_2_3_28) {{
-            try {
-                setDirectoryForTemplateLoading(new File(path));
+                setClassLoaderForTemplateLoading(ClassLoader.getSystemClassLoader(),"templates");
                 setDefaultEncoding(String.valueOf(StandardCharsets.UTF_8));
                 setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
                 setLogTemplateExceptions(false);
                 setWrapUncheckedExceptions(true);
-            } catch (IOException e) {
-                throw new IllegalArgumentException("smth went wrong", e);
-            }
+
         }};
     }
 
-    public Freemarker() {
-        this("./target/classes/templates");
-    }
 
     public void render(final String templateFile, final Map<String, Object> data, final HttpServletResponse resp) throws IOException {
         try {

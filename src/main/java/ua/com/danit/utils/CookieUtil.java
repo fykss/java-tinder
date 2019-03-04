@@ -1,4 +1,4 @@
-package utils;
+package ua.com.danit.utils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;

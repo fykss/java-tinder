@@ -1,6 +1,6 @@
-package dao.daoMessage;
+package ua.com.danit.dao.daoMessage;
 
-import dto.Message;
+import ua.com.danit.dto.Message;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,17 +1,21 @@
-package servlet;
+package ua.com.danit.servlet;
 
-import dto.Message;
-import service.ServiceMessages;
-import service.ServiceUsers;
-import utils.CookieUtil;
-import utils.Freemarker;
+import ua.com.danit.dto.Message;
+import ua.com.danit.service.ServiceMessages;
+import ua.com.danit.service.ServiceUsers;
+import ua.com.danit.utils.CookieUtil;
+import ua.com.danit.utils.Freemarker;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.*;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ServletChat extends HttpServlet {

@@ -1,11 +1,12 @@
-package servlet;
+package ua.com.danit.servlet;
 
-import dto.Like;
-import dto.User;
-import utils.CookieUtil;
-import utils.Freemarker;
-import service.ServiceLikes;
-import service.ServiceUsers;
+import ua.com.danit.dto.Like;
+import ua.com.danit.dto.User;
+import ua.com.danit.service.ServiceLikes;
+import ua.com.danit.service.ServiceUsers;
+import ua.com.danit.utils.CookieUtil;
+import ua.com.danit.utils.Freemarker;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

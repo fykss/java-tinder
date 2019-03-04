@@ -1,4 +1,4 @@
-package dao.daoMessage;
+package ua.com.danit.dao.daoMessage;
 
 import java.util.Collection;
 

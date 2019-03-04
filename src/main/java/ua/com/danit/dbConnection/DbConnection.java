@@ -1,4 +1,4 @@
-package dbConnection;
+package ua.com.danit.dbConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,12 +1,11 @@
-package service;
+package ua.com.danit.service;
 
-import dao.daoUsers.DbDaoUsers;
-import dto.User;
+import ua.com.danit.dao.daoUsers.DbDaoUsers;
+import ua.com.danit.dto.User;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 
 public class ServiceUsers {
 
