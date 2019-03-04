@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
 
     <title>Signin Template for Bootstrap</title>
 
@@ -17,6 +16,7 @@
 </head>
 
 <body class="text-center">
+
         <form class="form-signin" action="/login" method="post">
             <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/TinderLogo-2017.svg/2000px-TinderLogo-2017.svg.png" alt="" width="220" height="55">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>

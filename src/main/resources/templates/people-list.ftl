@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
+
 
     <title>People list</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -67,22 +67,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    var btn = document.getElementById('test');
-    btn.onclick = function(e){
-        console.log(btn.value())
-        console.log(e.target.closest)
-    }
-    // document.addEventListener("click",function(e){
-    //     e.preventDefault(),
-    //     e.target.closest(".toggle__menu")&&document.getElementsByClassName("toggle")[0].classList.toggle("navbar__active")})}$(document).ready(function(){$(".social-carousel").slick()}),dropdown();
-
-    // document.getElementsByClassName('test').onclick = function(e) {
-    //     var tr = e.target;
-    //     alert(tr.tagName);
-    // };
-
-</script>
+<a href="/logout">LogOut</a>
 
 </body>
 </html>

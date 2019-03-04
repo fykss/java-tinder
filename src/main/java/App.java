@@ -1,5 +1,5 @@
 import dbConnection.DbConnection;
-import filter.FilterLogin;
+import filter.FilterCookie;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -21,8 +21,8 @@ public class App {
         handler.addServlet(new ServletHolder(new ServletUsers(dbConn)), "/users/*");
         handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked/*");
         handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/messages/*");
-        handler.addServlet(new ServletHolder(new ServletLogout()), "/");
-        handler.addFilter(new FilterHolder(new FilterLogin()), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
+//        handler.addServlet(new ServletHolder(new ServletLogout()), "/");
+        handler.addFilter(new FilterHolder(new FilterCookie()), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
         Server server = new Server(8080);
         server.setHandler(handler);
