@@ -28,7 +28,7 @@ public class Freemarker {
     }
 
     public Freemarker() {
-        this("src/main/resources/templates");
+        this("./target/classes/templates");
     }
 
     public void render(final String templateFile, final Map<String, Object> data, final HttpServletResponse resp) throws IOException {

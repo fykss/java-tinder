@@ -1,7 +1,6 @@
 package dao.daoMessage;
 
 import dto.Message;
-import dto.MessageExtra;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -88,41 +87,41 @@ public class DbDaoMessages implements DaoMessage<Message> {
         return messages;
     }
 
-    public Collection<MessageExtra> getAllMsgExtra(int idSender, int idRecipient){
-        ArrayList<MessageExtra> messages = new ArrayList<>();
-        try(PreparedStatement ps = dbConn.prepareStatement(
-                "SELECT OD_88_tinderMessage.id," +
-                        "OD_88_tinderMessage.sender," +
-                        "OD_88_tinderMessage.recipient, " +
-                        "OD_88_tinderMessage.message," +
-                        "OD_88_tinderMessage.date," +
-                        "OD_88_tinderUsers.name," +
-                        "OD_88_tinderUsers.surname, " +
-                        "OD_88_tinderUsers.img " +
-                        "FROM OD_88_tinderMessage " +
-                        "INNER JOIN OD_88_tinderUsers " +
-                        "ON OD_88_tinderMessage.sender = OD_88_tinderUsers.id " +
-                        "WHERE sender = ? and recipient = ?;")){
-            ps.setInt(1, idSender);
-            ps.setInt(2, idRecipient);
-            ResultSet rSet = ps.executeQuery();
-            while (rSet.next()){
-                MessageExtra messageExtra = new MessageExtra(
-                        rSet.getInt("id"),
-                        rSet.getInt("sender"),
-                        rSet.getInt("recipient"),
-                        rSet.getString("message"),
-                        rSet.getDate("date"),
-                        rSet.getString("name"),
-                        rSet.getString("surname"),
-                        rSet.getString("img")
-                );
-                messages.add(messageExtra);
-        }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return messages;
-    }
+//    public Collection<MessageExtra> getAllMsgExtra(int idSender, int idRecipient){
+//        ArrayList<MessageExtra> messages = new ArrayList<>();
+//        try(PreparedStatement ps = dbConn.prepareStatement(
+//                "SELECT OD_88_tinderMessage.id," +
+//                        "OD_88_tinderMessage.sender," +
+//                        "OD_88_tinderMessage.recipient, " +
+//                        "OD_88_tinderMessage.message," +
+//                        "OD_88_tinderMessage.date," +
+//                        "OD_88_tinderUsers.name," +
+//                        "OD_88_tinderUsers.surname, " +
+//                        "OD_88_tinderUsers.img " +
+//                        "FROM OD_88_tinderMessage " +
+//                        "INNER JOIN OD_88_tinderUsers " +
+//                        "ON OD_88_tinderMessage.sender = OD_88_tinderUsers.id " +
+//                        "WHERE sender = ? and recipient = ?;")){
+//            ps.setInt(1, idSender);
+//            ps.setInt(2, idRecipient);
+//            ResultSet rSet = ps.executeQuery();
+//            while (rSet.next()){
+//                MessageExtra messageExtra = new MessageExtra(
+//                        rSet.getInt("id"),
+//                        rSet.getInt("sender"),
+//                        rSet.getInt("recipient"),
+//                        rSet.getString("message"),
+//                        rSet.getDate("date"),
+//                        rSet.getString("name"),
+//                        rSet.getString("surname"),
+//                        rSet.getString("img")
+//                );
+//                messages.add(messageExtra);
+//        }
+//        }catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return messages;
+//    }
 }
 
