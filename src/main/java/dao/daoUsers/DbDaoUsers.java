@@ -166,4 +166,17 @@ public class DbDaoUsers implements DaoUsers<User> {
         return flag;
     }
 
+    @Override
+    public int maxId() {
+        int result = 0;
+        try(PreparedStatement ps = dbConn.prepareStatement("SELECT max(id) from OD_88_tinderUsers")){
+            ResultSet rSet = ps.executeQuery();
+            while (rSet.next()) {
+                result = rSet.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

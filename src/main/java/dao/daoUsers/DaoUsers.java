@@ -12,4 +12,5 @@ public interface DaoUsers<T> {
     void add(T item);
     Collection<User> getAllLikes(int id);
     void updateDate(int id);
+    int maxId();
 }

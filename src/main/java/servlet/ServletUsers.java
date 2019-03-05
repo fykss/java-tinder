@@ -33,25 +33,28 @@ public class ServletUsers extends HttpServlet {
         int idUserNotShow = new CookieUtil().getIdUser(req.getCookies());
         String gender = serviceUsers.getUser(idUserNotShow).getGender();
 
-        User user = serviceUsers.getUser(countNext);
-        if(user != null ){
-            while (gender.equals(user.getGender())) {
-                countNext++;
-                user = serviceUsers.getUser(countNext);
-                if(user == null ){
-                    countNext = 1;
-                    resp.sendRedirect("/liked");
+        int maxId = serviceUsers.maxIdUser();
+        if(maxId > countNext){
+
+                User user = serviceUsers.getUser(countNext);
+                while (gender.equals(user.getGender())) {
+                    countNext++;
+                    user = serviceUsers.getUser(countNext);
+                    if(user == null ){
+                        countNext = 1;
+                        resp.sendRedirect("/liked");
+                    }
                 }
-            }
-            data.put("img", user.getUrlImg());
-            data.put("name", user.getName());
-            data.put("surname", user.getSurname());
-            data.put("id", user.getId());
-            freemarker.render("like-page.ftl", data,resp);
-            countNext++;
-        }else {
-            countNext = 1;
-            resp.sendRedirect("/liked");
+                data.put("img", user.getUrlImg());
+                data.put("name", user.getName());
+                data.put("surname", user.getSurname());
+                data.put("id", user.getId());
+                freemarker.render("like-page.ftl", data,resp);
+                countNext++;
+
+                if(serviceUsers.getUser(countNext) == null){
+                    countNext++;
+                }
         }
     }
 

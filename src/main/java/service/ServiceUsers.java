@@ -49,4 +49,8 @@ public class ServiceUsers {
         return dbDaoUsers.checkEmail(email);
     }
 
+    public int maxIdUser(){
+        return dbDaoUsers.maxId();
+    }
+
 }
