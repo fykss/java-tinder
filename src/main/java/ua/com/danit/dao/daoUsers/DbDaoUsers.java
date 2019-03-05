@@ -113,6 +113,21 @@ public class DbDaoUsers implements DaoUsers<User> {
         }
     }
 
+    @Override
+    public int maxId() {
+        int result = 0;
+        try(PreparedStatement ps = dbConn.prepareStatement("SELECT max(id) from OD_88_tinderUsers")){
+            ResultSet rSet = ps.executeQuery();
+            while (rSet.next()) {
+                result = rSet.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
     public boolean checkEmail(String email) {
         boolean flag = false;
         try (PreparedStatement ps = dbConn.prepareStatement("SELECT email FROM OD_88_tinderUsers where email=?")) {

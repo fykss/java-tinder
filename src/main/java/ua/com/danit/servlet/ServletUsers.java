@@ -34,25 +34,27 @@ public class ServletUsers extends HttpServlet {
         HashMap<String, Object> data = new HashMap<>();
 
         //забрати іфи!!! переробити counter
+        int maxIdUser = serviceUsers.maxIdUser();
         User user = serviceUsers.getUser(countNext);
-        if(user != null ){
-            while (gender.equals(user.getGender())) {
-                if(user != null ){
-                    countNext++;
-                    user = serviceUsers.getUser(countNext);
-                }else {
-                    countNext = 1;
-                    resp.sendRedirect("/liked");
-                }
-            }
-            data.put("user", user);
-            freemarker.render("like-page.ftl", data, resp);
-            countNext++;
-        }else {
+
+        if (countNext > maxIdUser) {
             countNext = 1;
             resp.sendRedirect("/liked");
         }
+        while (user == null || gender.equals(user.getGender())) {
+            if (countNext > maxIdUser) {
+                countNext = 0;
+                resp.sendRedirect("/liked");
+            }
+            countNext++;
+            user = serviceUsers.getUser(countNext);
+        }
+
+        data.put("user", user);
+        freemarker.render("like-page.ftl", data, resp);
+        countNext++;
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
