@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <title>Signin Template for Bootstrap</title>
+
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="./target/classes/templates/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/templates/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="./target/classes/templates/css/style.css">
+    <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 
 <body class="text-center">
@@ -26,9 +28,8 @@
             <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <a href="/reg" class="link">Registration</a>
+
             <p class="mt-5 mb-3 text-muted">&copy; Tinder 2019</p>
         </form>
-
 </body>
 </html>
