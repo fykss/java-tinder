@@ -11,4 +11,5 @@ public interface DaoUsers<T> {
     boolean checkEmail(String email);
     Collection<User> getAllLiked(int userId);
     void updateDate(int id);
+    int maxId();
 }

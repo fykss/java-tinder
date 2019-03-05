@@ -1,5 +1,6 @@
 package ua.com.danit.service;
 
+import ua.com.danit.dao.daoUsers.DaoUsers;
 import ua.com.danit.dao.daoUsers.DbDaoUsers;
 import ua.com.danit.dto.User;
 
@@ -9,35 +10,39 @@ import java.util.Collection;
 
 public class ServiceUsers {
 
-    private DbDaoUsers dbDaoUsers;
+    private DaoUsers<User> daoUsers;
 
     public ServiceUsers(Connection dbConn) {
-        this.dbDaoUsers = new DbDaoUsers(dbConn);
+        this.daoUsers = new DbDaoUsers(dbConn);
     }
 
     public User getUser(int idUser) {
-        return dbDaoUsers.get(idUser);
+        return daoUsers.get(idUser);
     }
 
     public int getIdUser(String email, String password) {
-        return dbDaoUsers.getId(new User(email, password));
+        return daoUsers.getId(new User(email, password));
     }
 
     public Collection<User>getAllLikedUsers(int idUserWhoLiked){
-        return dbDaoUsers.getAllLiked(idUserWhoLiked);
+        return daoUsers.getAllLiked(idUserWhoLiked);
     }
 
     public void updateUserDate(int userId){
-        dbDaoUsers.updateDate(userId);
+        daoUsers.updateDate(userId);
     }
 
     public void addUser(String name, String surname, String password, String position, String email, String urlImg, String gender){
         User user = new User(name, surname, password, position, email, urlImg, gender, new Timestamp(System.currentTimeMillis()));
-        dbDaoUsers.add(user);
+        daoUsers.add(user);
     }
 
     public boolean checkEmail(String email){
-        return dbDaoUsers.checkEmail(email);
+        return daoUsers.checkEmail(email);
+    }
+
+    public int maxIdUser(){
+       return daoUsers.maxId();
     }
 
 }
