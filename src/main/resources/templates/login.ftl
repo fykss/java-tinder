@@ -28,6 +28,7 @@
             <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <a class="link_regLogin" href="/reg">Sign Up</a>
 
             <p class="mt-5 mb-3 text-muted">&copy; Tinder 2019</p>
         </form>

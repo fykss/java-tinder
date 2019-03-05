@@ -37,9 +37,10 @@ public class CookieUtil {
         return flag;
     }
 
-    public Cookie addCookie(String nameCookie, String valueCookie){
+    public HttpServletResponse addCookie(String nameCookie, String valueCookie, HttpServletResponse resp){
         Cookie cookie = new Cookie(nameCookie, valueCookie);
         cookie.setMaxAge(24*60*60);
-        return cookie;
+        resp.addCookie(cookie);
+        return resp;
     }
 }

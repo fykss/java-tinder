@@ -22,12 +22,6 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String surname, String urlImg) {
-        this.name = name;
-        this.surname = surname;
-        this.urlImg = urlImg;
-    }
-
     public User(int id, String name, String surname, String position, String urlImg) {
         this.id = id;
         this.name = name;
@@ -44,17 +38,6 @@ public class User {
     public User(int id, String name, String surname, String position, String urlImg, Date date) {
         this(id,name,surname,position,urlImg);
         this.date = date;
-    }
-
-    public User(int id, String name, String surname, String password, String position, String email, String urlImg, String gender) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.position = position;
-        this.email = email;
-        this.urlImg = urlImg;
-        this.gender = gender;
     }
 
     public User(String name, String surname, String password, String position, String email, String urlImg, String gender, Date date) {

@@ -70,46 +70,7 @@ public class DbDaoUsers implements DaoUsers<User> {
     }
 
     @Override
-    public boolean check(User user) {
-        boolean flag = false;
-        try (PreparedStatement ps = dbConn.prepareStatement("SELECT email, password FROM OD_88_tinderUsers where email=? AND password=?")) {
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
-            ResultSet rSet = ps.executeQuery();
-            while (rSet.next()) {
-                String emailSql = rSet.getString(1);
-                String passwordSql = rSet.getString(2);
-                flag = user.getEmail().equals(emailSql) && user.getPassword().equals(passwordSql);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return flag;
-    }
-
-    @Override
-    public Collection<User> getAll() {
-        ArrayList<User> users = new ArrayList<>();
-        try (PreparedStatement ps = dbConn.prepareStatement("SELECT * FROM OD_88_tinderUsers")) {
-            ResultSet rSet = ps.executeQuery();
-            while (rSet.next()) {
-                User user = new User(
-                        rSet.getInt("id"),
-                        rSet.getString("name"),
-                        rSet.getString("surname"),
-                        rSet.getString("position"),
-                        rSet.getString("img"),
-                        rSet.getString("gender"));
-                users.add(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return users;
-    }
-
-    @Override
-    public Collection<User> getAllLikes(int id){
+    public Collection<User> getAllLiked(int userId){
         ArrayList<User> users = new ArrayList<>();
         try(PreparedStatement ps = dbConn.prepareStatement("" +
                 "SELECT OD_88_tinderLiked.userId_who," +
@@ -123,7 +84,7 @@ public class DbDaoUsers implements DaoUsers<User> {
                 "INNER JOIN OD_88_tinderUsers \n" +
                 "  ON OD_88_tinderLiked.userId_whom = OD_88_tinderUsers.id \n" +
                 "WHERE userId_who=?")){
-            ps.setInt(1, id);
+            ps.setInt(1, userId);
             ResultSet rSet = ps.executeQuery();
             while (rSet.next()){
                 User user = new User(
@@ -142,10 +103,10 @@ public class DbDaoUsers implements DaoUsers<User> {
     }
 
     @Override
-    public void updateDate(int id){
+    public void updateDate(int userId){
         try(PreparedStatement ps = dbConn.prepareStatement("UPDATE OD_88_tinderUsers SET date = ? WHERE id = ?")) {
             ps.setTimestamp(1, new Timestamp(System.currentTimeMillis() + 2*60*60*1000));
-            ps.setInt(2, id);
+            ps.setInt(2, userId);
             ps.execute();
         }catch (SQLException e){
             e.printStackTrace();

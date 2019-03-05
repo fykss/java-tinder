@@ -5,7 +5,6 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -23,7 +22,6 @@ public class Freemarker {
 
         }};
     }
-
 
     public void render(final String templateFile, final Map<String, Object> data, final HttpServletResponse resp) throws IOException {
         try {

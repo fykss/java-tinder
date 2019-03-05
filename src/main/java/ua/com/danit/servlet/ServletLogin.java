@@ -5,7 +5,6 @@ import ua.com.danit.utils.CookieUtil;
 import ua.com.danit.utils.Freemarker;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,12 +31,15 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if(serviceUsers.checkUser(email,password)){
-            int idUser = serviceUsers.getIdUser(email, password);
-            Cookie cookie = new CookieUtil().addCookie("tinderUser", Integer.toString(idUser));
-            resp.addCookie(cookie);
-            resp.sendRedirect("/users");
+
+        int idUser = serviceUsers.getIdUser(email, password);
+
+        //забрати іфи
+        if(idUser>0){
+            resp = new CookieUtil().addCookie("tinderUser", Integer.toString(idUser), resp);
+
             serviceUsers.updateUserDate(idUser);
+            resp.sendRedirect("/users");
         }else {
             resp.setHeader("Refresh","3; URL=/login");
             data.put("error", email);

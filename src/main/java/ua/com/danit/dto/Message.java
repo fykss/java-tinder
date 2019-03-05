@@ -11,17 +11,10 @@ public class Message{
 
     public Message(){};
 
-    public Message(int sender, int recipient, String textMessage, Date date) {
+    public Message(int sender, int recipient, String textMessage) {
         this.sender = sender;
         this.recipient = recipient;
         this.textMessage = textMessage;
-        this.date = date;
-    }
-
-    public Message(int sender, int recipient, Date date) {
-        this.sender = sender;
-        this.recipient = recipient;
-        this.date = date;
     }
 
     public Message(int id, int sender, int recipient, String textMessage, Date date) {
