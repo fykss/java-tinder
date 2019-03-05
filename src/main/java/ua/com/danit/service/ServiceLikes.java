@@ -1,49 +1,29 @@
 package ua.com.danit.service;
 
+import ua.com.danit.dao.daoLiked.DaoLiked;
 import ua.com.danit.dao.daoLiked.DbDaoLikes;
 import ua.com.danit.dto.Like;
 
 import java.sql.Connection;
-import java.util.Collection;
-import java.util.Date;
 
 public class ServiceLikes {
 
-    private DbDaoLikes dbDaoLikes;
+    private DaoLiked<Like> daoLiked;
 
     public ServiceLikes(Connection dbConn) {
-        this.dbDaoLikes = new DbDaoLikes(dbConn);
+        this.daoLiked = new DbDaoLikes(dbConn);
     }
 
-    public void saveLike(Like like){
-        dbDaoLikes.save(like);
+    public void saveLike(int userIdWho, int userIdWhom){
+        daoLiked.save(new Like(userIdWho, userIdWhom));
     }
 
-    public void delLike(int idWho,int idWhom){
-        Like like = new Like(idWho, idWhom);
-        dbDaoLikes.del(like);
-    }
-
-    public void updateLike(Like like){
-        dbDaoLikes.update(like);
-    }
-
-    public Like createLike(Date date, int... var){
-        Like like = new Like();
-        like.setUserIdWho(var[0]);
-        like.setUserIdWhom(var[1]);
-        like.setDate(date);
-        return like;
+    public void delLike(int userIdWho, int userIdWhom){
+        daoLiked.del(new Like(userIdWho, userIdWhom));
     }
 
     public boolean checkLike(int idWho, int idWhom){
-        Like like = new Like(idWho, idWhom);
-        return dbDaoLikes.check(like);
+        return daoLiked.check(new Like(idWho, idWhom));
     }
 
-
-
-    public Collection<Like> getAllLike(int idUser){
-        return dbDaoLikes.getAll(idUser);
-    }
 }

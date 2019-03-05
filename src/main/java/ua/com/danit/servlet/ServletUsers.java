@@ -1,6 +1,5 @@
 package ua.com.danit.servlet;
 
-import ua.com.danit.dto.Like;
 import ua.com.danit.dto.User;
 import ua.com.danit.service.ServiceLikes;
 import ua.com.danit.service.ServiceUsers;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Timestamp;
 import java.util.HashMap;
 
 public class ServletUsers extends HttpServlet {
@@ -21,8 +19,8 @@ public class ServletUsers extends HttpServlet {
     private ServiceUsers serviceUsers;
     private ServiceLikes serviceLikes;
     private Freemarker freemarker = new Freemarker();
-    private HashMap<String, Object> data = new HashMap<>();
     private int countNext = 1;
+    private int idUserFromCookie;
 
     public ServletUsers(Connection dbConn) {
         this.serviceUsers = new ServiceUsers(dbConn);
@@ -31,24 +29,24 @@ public class ServletUsers extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idUserNotShow = new CookieUtil().getIdUser(req.getCookies());
-        String gender = serviceUsers.getUser(idUserNotShow).getGender();
+        idUserFromCookie = new CookieUtil().getIdUser(req.getCookies());
+        String gender = serviceUsers.getUser(idUserFromCookie).getGender();
+        HashMap<String, Object> data = new HashMap<>();
 
+        //забрати іфи!!! переробити counter
         User user = serviceUsers.getUser(countNext);
         if(user != null ){
             while (gender.equals(user.getGender())) {
-                countNext++;
-                user = serviceUsers.getUser(countNext);
-                if(user == null ){
+                if(user != null ){
+                    countNext++;
+                    user = serviceUsers.getUser(countNext);
+                }else {
                     countNext = 1;
                     resp.sendRedirect("/liked");
                 }
             }
-            data.put("img", user.getUrlImg());
-            data.put("name", user.getName());
-            data.put("surname", user.getSurname());
-            data.put("id", user.getId());
-            freemarker.render("like-page.ftl", data,resp);
+            data.put("user", user);
+            freemarker.render("like-page.ftl", data, resp);
             countNext++;
         }else {
             countNext = 1;
@@ -58,28 +56,24 @@ public class ServletUsers extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        idUserFromCookie = new CookieUtil().getIdUser(req.getCookies());
         String dislike = req.getParameter("dislike");
         String like = req.getParameter("like");
+        int userIdWhom;
 
-        int idWho = new CookieUtil().getIdUser(req.getCookies());
-
+        //забрати іфи!!!
         if(like != null){
-            int idWhom = Integer.parseInt(like);
-            Like likeWhom = serviceLikes.createLike(new Timestamp(System.currentTimeMillis()), idWho, idWhom);
-
-            if(serviceLikes.checkLike(idWho, idWhom)){
-                serviceLikes.updateLike(likeWhom);
+            userIdWhom = Integer.parseInt(like);
+            if(serviceLikes.checkLike(idUserFromCookie, userIdWhom)){
                 doGet(req,resp);
             }else{
-                serviceLikes.saveLike(likeWhom);
+                serviceLikes.saveLike(idUserFromCookie, userIdWhom);
                 doGet(req,resp);
             }
         }else if(dislike != null){
-
-            int idWhom = Integer.parseInt(dislike);
-
-            if (serviceLikes.checkLike(idWho, idWhom)){
-                serviceLikes.delLike(idWho, idWhom);
+            userIdWhom = Integer.parseInt(dislike);
+            if (serviceLikes.checkLike(idUserFromCookie, userIdWhom)){
+                serviceLikes.delLike(idUserFromCookie, userIdWhom);
                 doGet(req,resp);
             } else {
                 doGet(req,resp);
