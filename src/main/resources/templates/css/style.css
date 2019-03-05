@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    position: relative;
 }
 
 body {
@@ -97,6 +98,7 @@ i {  vertical-align: middle; }
 .img-circle {
     border-radius: 50%;
     width: 70px;
+    margin: 0 auto;
 }
 
 .chat
@@ -300,7 +302,7 @@ input:focus{
     overflow-x: hidden;
     background: #ECEFF1;
     position: relative;
-    top: 35px;
+    /*top: 35px;*/
 }
 .chats ul li{
     display: inline-block;
@@ -356,7 +358,7 @@ input:focus{
     font-size: 4px;
 }
 .msg-box{
-    margin-top: 35px;
+    /*margin-top: 35px;*/
 }
 .msg-box i{
     color: #404040;
@@ -407,10 +409,42 @@ input:focus{
     padding-left: 5px;
 }
 
-.list_label{
-    display: block;
-    min-height: 50px;
+.list_label {
+    display: flex;
+    min-height: 85px;
     margin: 0;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
 }
 
+#open{
+    /*display: none;*/
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+}
+.width{
+    width: 500px;
+}
+.align-middle-my{
+    width: 26%;
+    text-align: center;
+}
+.link_page{
+    display: flex;
+    justify-content: space-between;
+}
+.chat_open{
+    display: block;
+}
+.link_regLogin{
+    margin-top: 10px;
+    display: inline-block;
+    color: #fe3a72;
+}
+
+.link_regLogin:hover{
+    color: #505050;
+    text-decoration: none;
+}

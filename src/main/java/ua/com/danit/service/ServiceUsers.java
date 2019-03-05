@@ -23,16 +23,8 @@ public class ServiceUsers {
         return dbDaoUsers.getId(new User(email, password));
     }
 
-    public boolean checkUser(String email, String password) {
-        return dbDaoUsers.check(new User(email, password));
-    }
-
-    public Collection<User> getAllUsers() {
-        return dbDaoUsers.getAll();
-    }
-
     public Collection<User>getAllLikedUsers(int idUserWhoLiked){
-        return dbDaoUsers.getAllLikes(idUserWhoLiked);
+        return dbDaoUsers.getAllLiked(idUserWhoLiked);
     }
 
     public void updateUserDate(int userId){
