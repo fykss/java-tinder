@@ -19,12 +19,12 @@ public class App {
         handler.addServlet(new ServletHolder(new ServletRegistration(dbConn)), "/reg/*");
         handler.addServlet(new ServletHolder(new ServletLogin(dbConn)), "/login/*");
         handler.addServlet(new ServletHolder(new ServletUsers(dbConn)), "/users/*");
-        handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked/*");
-        handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/liked/message");
+        handler.addServlet(new ServletHolder(new ServletPeopleList(dbConn)), "/liked");
+        handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/liked/*");
 //        handler.addServlet(new ServletHolder(new ServletLogout()), "/");
         handler.addFilter(new FilterHolder(new FilterCookie()), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
-        Server server = new Server(8080);
+        Server server = new Server(8082);
         server.setHandler(handler);
         try {
             server.start();

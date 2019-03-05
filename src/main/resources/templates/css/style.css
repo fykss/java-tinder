@@ -302,7 +302,7 @@ input:focus{
     overflow-x: hidden;
     background: #ECEFF1;
     position: relative;
-    top: 35px;
+    /*top: 35px;*/
 }
 .chats ul li{
     display: inline-block;
@@ -358,7 +358,7 @@ input:focus{
     font-size: 4px;
 }
 .msg-box{
-    margin-top: 35px;
+    /*margin-top: 35px;*/
 }
 .msg-box i{
     color: #404040;
