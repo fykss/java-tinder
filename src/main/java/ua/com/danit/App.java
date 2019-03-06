@@ -24,7 +24,12 @@ public class App {
         handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/liked/*");
         handler.addFilter(new FilterHolder(new FilterCookie(dbConn)), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
-        Server server = new Server(8081);
+        String port = System.getenv().get("PORT");
+        if (port == null || port == ""){
+            port="8080";
+        }
+
+        Server server = new Server(Integer.parseInt(port));
         server.setHandler(handler);
         try {
             server.start();
