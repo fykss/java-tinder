@@ -3,7 +3,6 @@ package ua.com.danit.service;
 import ua.com.danit.dao.daoMessage.DaoMessage;
 import ua.com.danit.dao.daoMessage.DbDaoMessages;
 import ua.com.danit.dto.Message;
-
 import java.sql.Connection;
 import java.util.Collection;
 

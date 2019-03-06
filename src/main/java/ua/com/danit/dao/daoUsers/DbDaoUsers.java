@@ -1,7 +1,6 @@
 package ua.com.danit.dao.daoUsers;
 
 import ua.com.danit.dto.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,14 +8,15 @@ import java.util.Collection;
 public class DbDaoUsers implements DaoUsers<User> {
 
     private Connection dbConn;
-
     public DbDaoUsers(Connection dbConn) {
         this.dbConn = dbConn;
     }
 
     @Override
     public void add(User user) {
-        try(PreparedStatement ps = dbConn.prepareStatement("insert into OD_88_tinderUsers(id, name, surname, position, email, password, date, img, gender) values (?,?,?,?,?,?,?,?,?)")){
+        try(PreparedStatement ps = dbConn.prepareStatement(
+                "insert into OD_88_tinderUsers(id, name, surname, position, email, password, date, img, gender) " +
+                        "values (?,?,?,?,?,?,?,?,?)")){
             ps.setInt(1, user.getId());
             ps.setString(2, user.getName());
             ps.setString(3, user.getSurname());
@@ -35,7 +35,9 @@ public class DbDaoUsers implements DaoUsers<User> {
     @Override
     public User get(int id) {
         User user = null;
-        try (PreparedStatement ps = dbConn.prepareStatement("SELECT id, name, surname, position, img, gender FROM OD_88_tinderUsers WHERE id=?")) {
+        try (PreparedStatement ps = dbConn.prepareStatement(
+                "SELECT id, name, surname, position, img, gender " +
+                        "FROM OD_88_tinderUsers WHERE id=?")) {
             ps.setInt(1, id);
             ResultSet rSet = ps.executeQuery();
             while (rSet.next()) {
@@ -56,7 +58,8 @@ public class DbDaoUsers implements DaoUsers<User> {
     @Override
     public int getId(User user) {
         int result = 0;
-        try (PreparedStatement ps = dbConn.prepareStatement("SELECT id FROM OD_88_tinderUsers where email=? and password=?")) {
+        try (PreparedStatement ps = dbConn.prepareStatement(
+                "SELECT id FROM OD_88_tinderUsers where email=? and password=?")) {
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
             ResultSet rSet = ps.executeQuery();
@@ -104,7 +107,8 @@ public class DbDaoUsers implements DaoUsers<User> {
 
     @Override
     public void updateDate(int userId){
-        try(PreparedStatement ps = dbConn.prepareStatement("UPDATE OD_88_tinderUsers SET date = ? WHERE id = ?")) {
+        try(PreparedStatement ps = dbConn.prepareStatement(
+                "UPDATE OD_88_tinderUsers SET date = ? WHERE id = ?")) {
             ps.setTimestamp(1, new Timestamp(System.currentTimeMillis() + 2*60*60*1000));
             ps.setInt(2, userId);
             ps.execute();
@@ -116,7 +120,8 @@ public class DbDaoUsers implements DaoUsers<User> {
     @Override
     public int maxId() {
         int result = 0;
-        try(PreparedStatement ps = dbConn.prepareStatement("SELECT max(id) from OD_88_tinderUsers")){
+        try(PreparedStatement ps = dbConn.prepareStatement(
+                "SELECT max(id) from OD_88_tinderUsers")){
             ResultSet rSet = ps.executeQuery();
             while (rSet.next()) {
                 result = rSet.getInt(1);
@@ -130,7 +135,8 @@ public class DbDaoUsers implements DaoUsers<User> {
     @Override
     public boolean checkEmail(String email) {
         boolean flag = false;
-        try (PreparedStatement ps = dbConn.prepareStatement("SELECT email FROM OD_88_tinderUsers where email=?")) {
+        try (PreparedStatement ps = dbConn.prepareStatement(
+                "SELECT email FROM OD_88_tinderUsers where email=?")) {
             ps.setString(1, email);
             ResultSet rSet = ps.executeQuery();
             while (rSet.next()) {

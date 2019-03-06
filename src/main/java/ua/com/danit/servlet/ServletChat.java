@@ -7,7 +7,6 @@ import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
 import ua.com.danit.utils.DescribeTime;
 import ua.com.danit.utils.Freemarker;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +54,7 @@ public class ServletChat extends HttpServlet {
         int idUserSender = new CookieUtil().getIdUser(req.getCookies());
         int idUserRecipient = Integer.parseInt(req.getParameter("id"));
         String messageText = req.getParameter("messageText");
+
         serviceMessages.addMessage(idUserSender,idUserRecipient,messageText);
         doGet(req, resp);
     }

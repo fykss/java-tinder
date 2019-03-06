@@ -36,8 +36,7 @@ public class ServletRegistration extends HttpServlet {
         String urlImg = req.getParameter("urlImg");
         String gender = req.getParameter("gender");
 
-
-        //забрати іфи
+        //remove if
         if(serviceUsers.checkEmail(email)){
             resp.setHeader("Refresh","3; URL=/reg");
             data.put("error_email", email);

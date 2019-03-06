@@ -5,7 +5,6 @@ import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
 import ua.com.danit.utils.DescribeTime;
 import ua.com.danit.utils.Freemarker;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,14 +30,15 @@ public class ServletPeopleList extends HttpServlet {
         int idUser = new CookieUtil().getIdUser(req.getCookies());
         Collection<User> allLikedUser = serviceUsers.getAllLikedUsers(idUser);
 
-        //забрати іфи
         if(allLikedUser.size() == 0){
-            resp.sendRedirect("/users");
+            resp.setHeader("Refresh","3; URL=/users");
+            freemarker.render("people-list_empty.ftl", data,resp);
+        }else {
+            allLikedUser.forEach(user -> user.setTimeDif(new DescribeTime().describeTimeDif((Date)user.getDate())));
+            data.put("listUsers", allLikedUser);
+            data.put("conn","");
+            freemarker.render("people-list.ftl", data,resp);
         }
-        allLikedUser.forEach(user -> user.setTimeDif(new DescribeTime().describeTimeDif((Date)user.getDate())));
-        data.put("listUsers", allLikedUser);
-        data.put("conn","");
-        freemarker.render("people-list.ftl", data,resp);
     }
 
     @Override

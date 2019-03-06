@@ -3,7 +3,6 @@ package ua.com.danit.service;
 import ua.com.danit.dao.daoUsers.DaoUsers;
 import ua.com.danit.dao.daoUsers.DbDaoUsers;
 import ua.com.danit.dto.User;
-
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.Collection;
