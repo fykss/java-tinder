@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 
-<body class="text-center">
+<body class="text-center style">
 
         <form class="form-signin" action="/login" method="post">
             <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/TinderLogo-2017.svg/2000px-TinderLogo-2017.svg.png" alt="" width="220" height="55">

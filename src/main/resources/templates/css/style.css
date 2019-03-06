@@ -448,3 +448,6 @@ input:focus{
     color: #505050;
     text-decoration: none;
 }
+.style{
+    display: flex;
+}
