@@ -6,7 +6,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import ua.com.danit.dbConnection.DbConnection;
 import ua.com.danit.filter.FilterCookie;
 import ua.com.danit.servlet.*;
-
 import javax.servlet.DispatcherType;
 import java.sql.Connection;
 import java.util.EnumSet;
@@ -37,5 +36,6 @@ public class App {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 }

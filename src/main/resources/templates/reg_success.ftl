@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
 
     <title>Signin Template for Bootstrap</title>
 
@@ -16,7 +15,7 @@
     <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 
-<body class="success">
+<body class="success style">
 <div class="success_box">
     <div class="success_box-title">Success:</div>
     <div>User create successfully: <span class="error_box-span-email">${name} ${surname}</span></div>
