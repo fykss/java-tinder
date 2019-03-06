@@ -37,10 +37,10 @@
                 <configuration>
                     <includeTarget>false</includeTarget>
                     <includes>
-                        <include>target/tinder-1.0-jar-with-dependencies.jar</include>
+                        <include>target/tinder-1.0.jar</include>
                     </includes>
                     <processTypes>
-                        <web>java -jar target/tinder-1.0-jar-with-dependencies.jar</web>
+                        <web>java -jar target/tinder-1.0.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
