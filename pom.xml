@@ -19,6 +19,14 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <archive>
                         <manifest>
@@ -37,10 +45,10 @@
                 <configuration>
                     <includeTarget>false</includeTarget>
                     <includes>
-                        <include>target/tinder-1.0.jar</include>
+                        <include>target/tinder-1.0-jar-with-dependencies.jar</include>
                     </includes>
                     <processTypes>
-                        <web>java -jar target/tinder-1.0.jar</web>
+                        <web>java -jar target/tinder-1.0-jar-with-dependencies.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>

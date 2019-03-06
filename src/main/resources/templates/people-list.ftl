@@ -35,44 +35,44 @@
                 <div class="panel-body">
                     <div class="table-container">
                         <form action="/liked" method="post" id="form_like" type="submit"></form>
-                            <table class="table-users table" border="0">
-                                <tbody>
-                                <#list listUsers as listItem>
-                                    <tr class="table_row">
-                                        <td class="align_left align-middle-my" width="10">
-                                            <#--<label class="list_label" for="${listItem.getId()}" onclick="openForm()">-->
-                                            <label class="list_label" for="${listItem.getId()}">
-                                                <div class="avatar-img" >
-                                                    <img class="img-circle" src="${listItem.getUrlImg()}" />  
-                                                </div>
-                                            </label>
-                                        </td>
-                                        <td class="align-middle align-middle-my">
-                                            <label class="list_label" for="${listItem.getId()}">
-                                                ${listItem.getName()} ${listItem.getSurname()}
-                                            </label>
-                                        </td>
-                                        <td class="align-middle align-middle-my">
-                                            <label class="list_label" for="${listItem.getId()}">
-                                                ${listItem.getPosition()}
-                                            </label>
-                                        </td>
-                                        <td  class="align-middle align-middle-my">
-                                            <label class="list_label" for="${listItem.getId()}">
-                                                <div>
-                                                    Last Login: <br>
-                                                        <small class="text-muted">
-                                                            ${listItem.getTimeDif()}
-                                                        </small>
-                                                </div>
+                        <table class="table-users table" border="0">
+                            <tbody>
+                            <#list listUsers as listItem>
+                                <tr class="table_row">
+                                    <td class="align_left align-middle-my" width="10">
+                                        <#--<label class="list_label" for="${listItem.getId()}" onclick="openForm()">-->
+                                        <label class="list_label" for="${listItem.getId()}">
+                                            <div class="avatar-img" >
+                                                <img class="img-circle" src="${listItem.getUrlImg()}" />  
+                                            </div>
+                                        </label>
+                                    </td>
+                                    <td class="align-middle align-middle-my">
+                                        <label class="list_label" for="${listItem.getId()}">
+                                            ${listItem.getName()} ${listItem.getSurname()}
+                                        </label>
+                                    </td>
+                                    <td class="align-middle align-middle-my">
+                                        <label class="list_label" for="${listItem.getId()}">
+                                            ${listItem.getPosition()}
+                                        </label>
+                                    </td>
+                                    <td  class="align-middle align-middle-my">
+                                        <label class="list_label" for="${listItem.getId()}">
+                                            <div>
+                                                Last Login: <br>
+                                                <small class="text-muted">
+                                                    ${listItem.getTimeDif()}
+                                                </small>
+                                            </div>
 
-                                            </label>
-                                            <button style="display: none" id="${listItem.getId()}" class="btn_submit" form="form_like" type="submit" name="userId" value="${listItem.getId()}">Send</button>
-                                        </td>
-                                    </tr>
-                                </#list>
-                                </tbody>
-                            </table>
+                                        </label>
+                                        <button style="display: none" id="${listItem.getId()}" class="btn_submit" form="form_like" type="submit" name="userId" value="${listItem.getId()}">Send</button>
+                                    </td>
+                                </tr>
+                            </#list>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
