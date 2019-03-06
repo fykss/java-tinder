@@ -5,7 +5,6 @@ import ua.com.danit.service.ServiceLikes;
 import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
 import ua.com.danit.utils.Freemarker;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +48,6 @@ public class ServletUsers extends HttpServlet {
             countNext++;
             user = serviceUsers.getUser(countNext);
         }
-
         data.put("user", user);
         freemarker.render("like-page.ftl", data, resp);
         countNext++;
@@ -63,7 +61,7 @@ public class ServletUsers extends HttpServlet {
         String like = req.getParameter("like");
         int userIdWhom;
 
-        //забрати іфи!!!
+        //remove if
         if(like != null){
             userIdWhom = Integer.parseInt(like);
             if(serviceLikes.checkLike(idUserFromCookie, userIdWhom)){

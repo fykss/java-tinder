@@ -3,7 +3,6 @@ package ua.com.danit.servlet;
 import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
 import ua.com.danit.utils.Freemarker;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,13 +30,10 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-
         int idUser = serviceUsers.getIdUser(email, password);
 
-        //забрати іфи
         if(idUser>0){
             resp = new CookieUtil().addCookie("tinderUser", Integer.toString(idUser), resp);
-
             serviceUsers.updateUserDate(idUser);
             resp.sendRedirect("/users");
         }else {

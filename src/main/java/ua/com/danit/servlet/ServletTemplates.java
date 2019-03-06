@@ -1,7 +1,6 @@
 package ua.com.danit.servlet;
 
 import ua.com.danit.utils.Freemarker;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
