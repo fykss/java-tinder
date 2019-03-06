@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 
-<body class="error">
+<body class="error style">
 <div class="error_box">
     <div class="error_box-title">Error:</div>
     <div>This email: <span class="error_box-span-email">${error_email}</span>.<br>Is exist. Try again.</div>

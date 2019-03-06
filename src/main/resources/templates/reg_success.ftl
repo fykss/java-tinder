@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 
-<body class="success">
+<body class="success style">
 <div class="success_box">
     <div class="success_box-title">Success:</div>
     <div>User create successfully: <span class="error_box-span-email">${name} ${surname}</span></div>

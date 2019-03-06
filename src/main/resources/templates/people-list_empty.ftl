@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 
-<body class="error">
+<body class="error style">
 <div class="error_box">
     <div>You have not liked anyone :(<br>Please like someone.<br>Good luck!</div>
 </div>

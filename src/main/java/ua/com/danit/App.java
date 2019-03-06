@@ -25,7 +25,7 @@ public class App {
 
         String port = System.getenv().get("PORT");
         if(port == null || port == ""){
-            port="8086";
+            port="8088";
         }
 
         Server server = new Server(Integer.parseInt(port));
