@@ -78,81 +78,78 @@
             </div>
         </div>
     </div>
-</div>
 
     <#if conn == "/liked/messages">
-            <div class="container_chat" id="open">
-                <div class="row">
-                    <div class="width">
-                        <div class="col-md-12 chat-header">
-                            <div class="row header-one text-white p-1">
-                                <div class="col-md-6 name pl-2">
-                                    <i class="fa fa-comment"></i>
-                                    <h6 class="ml-1 mb-0">${user.name} ${user.surname}</h6>
-                                </div>
-                                <div class="col-md-6 options text-right pr-0">
-                                    <i class="fa fa-window-minimize hide-chat-box hover text-center pt-1" onclick="closeChat()"></i>
-                                    <p class="arrow-up mb-0">
-                                        <i class="fa fa-arrow-up text-center pt-1" onclick="openChat()"></i>
-                                    </p>
-                                    <i class="fa fa-times hover text-center pt-1" onclick="closeForm()"></i>
-                                </div>
+        <div class="container_chat" id="open">
+            <div class="row">
+                <div class="width">
+                    <div class="col-md-12 chat-header">
+                        <div class="row header-one text-white p-1">
+                            <div class="col-md-6 name pl-2">
+                                <i class="fa fa-comment"></i>
+                                <h6 class="ml-1 mb-0">${user.name} ${user.surname}</h6>
                             </div>
-
+                            <div class="col-md-6 options text-right pr-0">
+                                <i class="fa fa-window-minimize hide-chat-box hover text-center pt-1" onclick="closeChat()"></i>
+                                <p class="arrow-up mb-0">
+                                    <i class="fa fa-arrow-up text-center pt-1" onclick="openChat()"></i>
+                                </p>
+                                <i class="fa fa-times hover text-center pt-1" onclick="closeForm()"></i>
+                            </div>
                         </div>
-                        <div class="chat-content" id="chat_open">
-                            <div class="col-md-12 chats pt-3 pl-2 pr-3 pb-3">
-                                <ul class="p-0">
-                                    <#list listMsg as msg>
+
+                    </div>
+                    <div class="chat-content" id="chat_open">
+                        <div class="col-md-12 chats pt-3 pl-2 pr-3 pb-3">
+                            <ul class="p-0">
+                                <#list listMsg as msg>
                                     <#if msg.getSender()== idUser>
-                                    <li class="send-msg float-right mb-2">
-                                        <p class="pt-1 pb-1 pl-2 pr-2 m-0 rounded">
-                                            ${msg.getTextMessage()}
-                                        </p>
-                                        <span class="receive-msg-time">${msg.getDate()}</span>
-                                    </li>
-                                    <#else>
-                                    <li class="receive-msg float-left mb-2">
-                                        <div class="sender-img">
-                                            <img src="${user.urlImg}" class="float-left">
-                                        </div>
-                                        <div class="receive-msg-desc float-left ml-2">
-                                            <p class="bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded">
+                                        <li class="send-msg float-right mb-2">
+                                            <p class="pt-1 pb-1 pl-2 pr-2 m-0 rounded">
                                                 ${msg.getTextMessage()}
                                             </p>
-                                            <span class="receive-msg-time">${user.name}, ${msg.getDate()}</span>
-                                        </div>
-                                    </li>
+                                            <span class="receive-msg-time">${msg.getDate()}</span>
+                                        </li>
+                                    <#else>
+                                        <li class="receive-msg float-left mb-2">
+                                            <div class="sender-img">
+                                                <img src="${user.urlImg}" class="float-left">
+                                            </div>
+                                            <div class="receive-msg-desc float-left ml-2">
+                                                <p class="bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded">
+                                                    ${msg.getTextMessage()}
+                                                </p>
+                                                <span class="receive-msg-time">${user.name}, ${msg.getDate()}</span>
+                                            </div>
+                                        </li>
                                     </#if>
-                                    </#list>
-                                </ul>
-                            </div>
-                            <div class="col-md-12 p-2 msg-box border border-primary">
-                                <div class="row">
-                                    <div class="col-md-2 options-left">
-                                        <i class="fa fa-smile-o"></i>
-                                    </div>
-                                    <form action="/liked/messages?id=${user.id}" id="mess" method="post"></form>
-                                    <div class="col-md-7 pl-0">
-                                        <input form="mess" name="messageText" type="text" class="border-0" placeholder="Send message" accesskey="ENTER"/>
-                                    </div>
-                                    <div class="col-md-3 text-right options-right">
-                                        <i class="fa fa-picture-o mr-2"></i>
-                                    </div>
+                                </#list>
+                            </ul>
+                        </div>
+                        <div class="col-md-12 p-2 msg-box border border-primary">
+                            <div class="row">
+                                <div class="col-md-2 options-left">
+                                    <i class="fa fa-smile-o"></i>
+                                </div>
+                                <form action="/liked/messages?id=${user.id}" id="mess" method="post"></form>
+                                <div class="col-md-7 pl-0">
+                                    <input form="mess" name="messageText" type="text" class="border-0" placeholder="Send message" accesskey="ENTER"/>
+                                </div>
+                                <div class="col-md-3 text-right options-right">
+                                    <i class="fa fa-picture-o mr-2"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <#else>
+        </div>
+    <#else>
     </#if>
 
+</div>
+
 <script>
-    // function openForm() {
-    //     document.getElementById("open").style.display = "block";
-    // }
-    //
     function closeForm() {
         document.getElementById("open").style.display = "none";
     }

@@ -1,16 +1,17 @@
 html,
 body {
     height: 100%;
-    position: relative;
 }
 
 body {
     display: -ms-flexbox;
-    display: flex;
     -ms-flex-align: center;
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
+}
+.container{
+    position: relative;
 }
 
 .form-signin {
@@ -156,8 +157,6 @@ i {  vertical-align: middle; }
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
 }
-
-
 
 .mytext{
     border:0;padding:10px;background:whitesmoke;
@@ -358,6 +357,7 @@ input:focus{
     font-size: 4px;
 }
 .msg-box{
+    background-color: white;
     /*margin-top: 35px;*/
 }
 .msg-box i{
@@ -420,7 +420,7 @@ input:focus{
 
 #open{
     /*display: none;*/
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 25px;
 }
