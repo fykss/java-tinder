@@ -7,7 +7,6 @@ import java.util.Calendar;
 
 public class DescribeTime {
 
-
     public String describeTimeDif(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

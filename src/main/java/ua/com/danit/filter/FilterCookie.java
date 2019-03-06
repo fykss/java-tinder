@@ -2,7 +2,6 @@ package ua.com.danit.filter;
 
 import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +25,9 @@ public class FilterCookie implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         CookieUtil cookieUtil = new CookieUtil();
 
-
+        if(req.getServletPath().equals("/") && cookieUtil.checkCookie(req.getCookies())){
+            resp.sendRedirect("/users");
+        }
         if (req.getServletPath().equals("/logout")){
             serviceUsers.updateUserDate(cookieUtil.getIdUser(req.getCookies()));
             resp = cookieUtil.killCookie(req.getCookies(), resp);

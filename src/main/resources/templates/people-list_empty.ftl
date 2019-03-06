@@ -7,7 +7,6 @@
     <meta name="author" content="">
 
     <title>Signin Template for Bootstrap</title>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="/templates/css/bootstrap.min.css">
 
@@ -15,10 +14,9 @@
     <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 
-<body class="success style">
-<div class="success_box">
-    <div class="success_box-title">Success:</div>
-    <div>User create successfully: <span class="error_box-span-email">${name} ${surname}</span></div>
+<body class="error style">
+<div class="error_box">
+    <div>You have not liked anyone :(<br>Please like someone.<br>Good luck!</div>
 </div>
 </body>
 </html>

@@ -6,7 +6,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import ua.com.danit.dbConnection.DbConnection;
 import ua.com.danit.filter.FilterCookie;
 import ua.com.danit.servlet.*;
-
 import javax.servlet.DispatcherType;
 import java.sql.Connection;
 import java.util.EnumSet;
@@ -24,7 +23,12 @@ public class App {
         handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/liked/*");
         handler.addFilter(new FilterHolder(new FilterCookie(dbConn)), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
-        Server server = new Server(8080);
+        String port = System.getenv().get("PORT");
+        if (port == null || port == ""){
+            port="8080";
+        }
+
+        Server server = new Server(Integer.parseInt(port));
         server.setHandler(handler);
         try {
             server.start();
@@ -32,5 +36,6 @@ public class App {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 }

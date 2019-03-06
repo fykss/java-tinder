@@ -1,7 +1,6 @@
 package ua.com.danit.dao.daoMessage;
 
 import ua.com.danit.dto.Message;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,7 +15,8 @@ public class DbDaoMessages implements DaoMessage<Message> {
 
     @Override
     public void add(Message message) {
-        try(PreparedStatement ps = dbConn.prepareStatement("insert into OD_88_tinderMessage(sender, recipient, message, date) values (?,?,?,?)")) {
+        try(PreparedStatement ps = dbConn.prepareStatement(
+                "insert into OD_88_tinderMessage(sender, recipient, message, date) values (?,?,?,?)")) {
             ps.setInt(1, message.getSender());
             ps.setInt(2, message.getRecipient());
             ps.setString(3, message.getTextMessage());
