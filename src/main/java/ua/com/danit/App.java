@@ -24,7 +24,7 @@ public class App {
         handler.addServlet(new ServletHolder(new ServletChat(dbConn)), "/liked/*");
         handler.addFilter(new FilterHolder(new FilterCookie(dbConn)), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
-        Server server = new Server(8082);
+        Server server = new Server(8080);
         server.setHandler(handler);
         try {
             server.start();
