@@ -153,11 +153,9 @@
     function closeForm() {
         document.getElementById("open").style.display = "none";
     }
-
     function openChat() {
         document.getElementById("chat_open").style.display = "block";
     }
-
     function closeChat() {
         document.getElementById("chat_open").style.display = "none";
     }

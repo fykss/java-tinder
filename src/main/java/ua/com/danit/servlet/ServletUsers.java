@@ -4,6 +4,7 @@ import ua.com.danit.dto.User;
 import ua.com.danit.service.ServiceLikes;
 import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
+import ua.com.danit.utils.EnCryptUtil;
 import ua.com.danit.utils.Freemarker;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class ServletUsers extends HttpServlet {
 
@@ -48,7 +50,12 @@ public class ServletUsers extends HttpServlet {
             countNext++;
             user = serviceUsers.getUser(countNext);
         }
+
         data.put("user", user);
+        data.put("disliked", EnCryptUtil.encrypt("disliked"));
+        data.put("liked", EnCryptUtil.encrypt("liked"));
+        data.put("userId", EnCryptUtil.encrypt(Integer.toString(user.getId())));
+
         freemarker.render("like-page.ftl", data, resp);
         countNext++;
     }
@@ -57,27 +64,53 @@ public class ServletUsers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         idUserFromCookie = new CookieUtil().getIdUser(req.getCookies());
-        String dislike = req.getParameter("dislike");
-        String like = req.getParameter("like");
-        int userIdWhom;
 
-        //remove if
-        if(like != null){
-            userIdWhom = Integer.parseInt(like);
-            if(serviceLikes.checkLike(idUserFromCookie, userIdWhom)){
-                doGet(req,resp);
-            }else{
-                serviceLikes.saveLike(idUserFromCookie, userIdWhom);
-                doGet(req,resp);
-            }
-        }else if(dislike != null){
-            userIdWhom = Integer.parseInt(dislike);
-            if (serviceLikes.checkLike(idUserFromCookie, userIdWhom)){
-                serviceLikes.delLike(idUserFromCookie, userIdWhom);
-                doGet(req,resp);
-            } else {
+        Map<String, String[]> pm = req.getParameterMap();
+
+        String action =
+                Stream.of(pm).map(stringMap -> stringMap.keySet()
+                        .stream().map(EnCryptUtil::decrypt).findFirst().get()).findFirst().get();
+
+        int idUserWhom = Integer.parseInt(Stream.of(pm).map(stringMap -> stringMap.values()
+                .stream().map(strings1 -> EnCryptUtil.decrypt(strings1[0])).findFirst().get()).findFirst().get());
+
+        if(action.equals("disliked")){
+            if (serviceLikes.checkLike(idUserFromCookie, idUserWhom)){
+                serviceLikes.delLike(idUserFromCookie, idUserWhom);
                 doGet(req,resp);
             }
         }
+        if(action.equals("liked")){
+            if(serviceLikes.checkLike(idUserFromCookie, idUserWhom)){
+                doGet(req,resp);
+            }else{
+                serviceLikes.saveLike(idUserFromCookie, idUserWhom);
+                doGet(req,resp);
+            }
+        }
+
+//        String dislike = req.getParameter("disliked");
+//        String like = req.getParameter("liked");
+//        int userIdWhom;
+//
+//        //remove if
+//        if(like != null){
+//            userIdWhom = Integer.parseInt(like);
+//            if(serviceLikes.checkLike(idUserFromCookie, userIdWhom)){
+//                doGet(req,resp);
+//            }else{
+//                serviceLikes.saveLike(idUserFromCookie, userIdWhom);
+//                doGet(req,resp);
+//            }
+//        }else if(dislike != null){
+//            userIdWhom = Integer.parseInt(dislike);
+//            if (serviceLikes.checkLike(idUserFromCookie, userIdWhom)){
+//                serviceLikes.delLike(idUserFromCookie, userIdWhom);
+//                doGet(req,resp);
+//            } else {
+//                doGet(req,resp);
+//            }
+//        }
     }
+
 }

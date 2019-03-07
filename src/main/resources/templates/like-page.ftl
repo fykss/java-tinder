@@ -34,14 +34,12 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     <form action="/users" method="post">
-                        <input name="${dislike}" value="${user.id}" type="hidden" >
-                        <button name="action" value="disliked" type="submit" class="btn btn-outline-danger btn-block"><span class="fa fa-times"></span> Dislike</button>
+                        <button name="${disliked}" value="${userId}" type="submit" class="btn btn-outline-danger btn-block"><span class="fa fa-times"></span> Dislike</button>
                     </form>
                 </div>
                 <div class="col-12 col-lg-6">
                     <form action="/users" method="post">
-                        <input name="${like}" value="${user.id}" type="hidden" >
-                        <button name="action" value="liked"  type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-heart"></span> Like</button>
+                        <button name="${liked}" value="${userId}"  type="submit" class="btn btn-outline-success btn-block"><span class="fa fa-heart"></span> Like</button>
                     </form>
                 </div>
                 <!--/col-->
