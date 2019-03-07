@@ -24,7 +24,7 @@ public class App {
         handler.addFilter(new FilterHolder(new FilterCookie(dbConn)), "/*", EnumSet.of(DispatcherType.INCLUDE, DispatcherType.REQUEST));
 
         String port = System.getenv().get("PORT");
-        if (port == null || port == ""){
+        if (port == null || port.equals("")){
             port="8082";
         }
 
