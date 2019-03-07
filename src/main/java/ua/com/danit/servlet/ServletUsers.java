@@ -4,7 +4,7 @@ import ua.com.danit.dto.User;
 import ua.com.danit.service.ServiceLikes;
 import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
-import ua.com.danit.utils.EnCryptUtil;
+import ua.com.danit.utils.CryptUtil;
 import ua.com.danit.utils.Freemarker;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -52,9 +52,9 @@ public class ServletUsers extends HttpServlet {
         }
 
         data.put("user", user);
-        data.put("disliked", EnCryptUtil.encrypt("disliked"));
-        data.put("liked", EnCryptUtil.encrypt("liked"));
-        data.put("userId", EnCryptUtil.encrypt(Integer.toString(user.getId())));
+        data.put("disliked", CryptUtil.encrypt("disliked"));
+        data.put("liked", CryptUtil.encrypt("liked"));
+        data.put("userId", CryptUtil.encrypt(Integer.toString(user.getId())));
 
         freemarker.render("like-page.ftl", data, resp);
         countNext++;
@@ -66,18 +66,15 @@ public class ServletUsers extends HttpServlet {
         idUserFromCookie = new CookieUtil().getIdUser(req.getCookies());
 
         Map<String, String[]> pm = req.getParameterMap();
-
-        String action =
-                Stream.of(pm).map(stringMap -> stringMap.keySet()
-                        .stream().map(EnCryptUtil::decrypt).findFirst().get()).findFirst().get();
-
-        int idUserWhom = Integer.parseInt(Stream.of(pm).map(stringMap -> stringMap.values()
-                .stream().map(strings1 -> EnCryptUtil.decrypt(strings1[0])).findFirst().get()).findFirst().get());
+        String action = CryptUtil.decryptPrmName(pm, req);
+        int idUserWhom = CryptUtil.decryptPrmValue(pm, req);
 
         if(action.equals("disliked")){
             if (serviceLikes.checkLike(idUserFromCookie, idUserWhom)){
                 serviceLikes.delLike(idUserFromCookie, idUserWhom);
                 doGet(req,resp);
+            }else {
+                doGet(req, resp);
             }
         }
         if(action.equals("liked")){
