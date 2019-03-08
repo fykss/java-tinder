@@ -37,7 +37,7 @@ public class ServletUsers extends HttpServlet {
         User user = serviceUsers.getUser(countNext);
 
         if (countNext > maxIdUser) {
-            countNext = 1;
+            countNext = 0;
             resp.sendRedirect("/liked");
         }
         while (user == null || gender.equals(user.getGender())) {
