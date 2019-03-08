@@ -443,6 +443,16 @@ input:focus{
     display: inline-block;
     color: #fe3a72;
 }
+.link{
+    margin-top: 10px;
+    display: inline-block;
+    color: #fe3a72;
+}
+.link:hover{
+    color: #1d2124;
+}
+
+
 
 .link_regLogin:hover{
     color: #505050;
