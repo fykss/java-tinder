@@ -14,18 +14,13 @@
     <link rel="stylesheet" href="/templates/css/style.css">
 </head>
 <body style="background-color: #f5f5f5;" class="style">
-
 <div class="col-4 offset-4">
-    <div class="link_page">
-        <div>
-            <a class="link_regLogin" href="/liked">Liked</a>
-        </div>
-        <div>
-            <a class="link_regLogin" href="/logout">LogOut</a>
-        </div>
-    </div>
     <div class="card">
         <div class="card-body">
+            <div class="link-page-l">
+                <a class="link_regLogin-l" href="/liked"><i class="fas fa-heart"></i></a>
+                <a class="link_regLogin-l" href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 text-center">
                     <img src="${user.urlImg}" alt="" class="mx-auto rounded-circle img-fluid">
@@ -49,6 +44,5 @@
         <!--/card-block-->
     </div>
 </div>
-
 </body>
 </html>

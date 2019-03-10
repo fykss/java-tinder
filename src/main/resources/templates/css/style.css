@@ -1,14 +1,23 @@
 html,
-body {
-    height: 100%;
-}
 
 body {
+    width: 100%;
+    height: 100%;
+
     display: -ms-flexbox;
     -ms-flex-align: center;
     align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    background-size: contain;
+    background-image: url(https://st.depositphotos.com/2275299/2505/v/950/depositphotos_25058279-stock-illustration-romantic-seamless-pattern-love-concept.jpg);
+}
+.bg{
+    width: 100%;
+    height: 100%;
+    background: #ffffffb0;
+}
+.bg2{
+    width: 100%;
+    background: #ffffffb0;
 }
 .container{
     position: relative;
@@ -19,6 +28,9 @@ body {
     max-width: 330px;
     padding: 15px;
     margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 .form-signin .checkbox {
     font-weight: 400;
@@ -48,7 +60,7 @@ body {
 i {  vertical-align: middle; }
 .table-users tbody tr:hover {
     cursor: pointer;
-    background-color: #eee;
+    background-color: #f4e2e661;
 }
 .nav-user-photo {
     vertical-align: middle;
@@ -64,16 +76,21 @@ i {  vertical-align: middle; }
 }
 
 .panel-default {
-    border-color: #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 .panel-default>.panel-heading {
-    color: #333;
-    background-color: #f5f5f5;
-    border-color: #ddd;
+    color: #fff;
+    background-color: #fe3a72;
+    border-color: #fe3a72;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .panel-heading {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 15px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 3px;
@@ -81,10 +98,13 @@ i {  vertical-align: middle; }
 }
 
 .panel-title {
+    margin-left: 10px;
     margin-top: 0;
     margin-bottom: 0;
     font-size: 16px;
     color: inherit;
+    display: flex;
+    align-items: center;
 }
 
 .table-users {
@@ -203,7 +223,7 @@ i {  vertical-align: middle; }
     position:absolute;bottom:0;width:100%;display:flex;
 }
 body > div > div > div:nth-child(2) > span{
-    background: whitesmoke;padding: 10px;font-size: 21px;border-radius: 50%;
+    font-size: 21px;
 }
 body > div > div > div.msj-rta.macro{
     margin:auto;margin-left:1%;
@@ -252,6 +272,8 @@ input:focus{
 }
 .header-one{
     background: #404040;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .name h6{
     display: inline-block;
@@ -301,6 +323,7 @@ input:focus{
     overflow-x: hidden;
     background: #ECEFF1;
     position: relative;
+    height: 300px;
     /*top: 35px;*/
 }
 .chats ul li{
@@ -431,17 +454,21 @@ input:focus{
     width: 26%;
     text-align: center;
 }
-.link_page{
+.link-page{
     display: flex;
-    justify-content: space-between;
 }
 .chat_open{
     display: block;
 }
 .link_regLogin{
-    margin-top: 10px;
     display: inline-block;
     color: #fe3a72;
+}
+.link_regLogin-p{
+    color: white;
+}
+.link_regLogin-p:hover{
+    color: #ffcae0;
 }
 .link{
     margin-top: 10px;
@@ -455,9 +482,45 @@ input:focus{
 
 
 .link_regLogin:hover{
-    color: #505050;
+    color: #ffcae0;
     text-decoration: none;
 }
 .style{
     display: flex;
+}
+.style2{
+    padding-top: 2rem;
+}
+.link_regLogin-l{
+    color: #fe3a72;
+}
+.link_regLogin-l:hover{
+    color: #87929e;
+}
+.link-page-l{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bg-e{
+    width: 100%;
+    height: 100%;
+    background: #ffffffb0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error_box-e{
+    margin: 0 auto !important;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.bg-3{
+    width: 100%;
+    height: auto;
+    background: #ffffffb0;
 }

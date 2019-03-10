@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-
     <title>People list</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
@@ -14,23 +12,21 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="/templates/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
-
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2">
-            <div class="link_page">
-                <div>
-                    <a class="link_regLogin" href="/users">Profiles</a>
-                </div>
-                <div>
-                    <a class="link_regLogin" href="/logout">LogOut</a>
-                </div>
-            </div>
             <div class="panel panel-default user_panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">User List</h3>
+                    <div class="link-page">
+                        <a class="link_regLogin-p" href="/users"><i class="fas fa-chevron-left"></i></a>
+                        <h3 class="panel-title">User List</h3>
+                    </div>
+                    <div>
+                        <a class="link_regLogin-p" href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-container">
@@ -131,7 +127,7 @@
                                 <div class="col-md-2 options-left">
                                     <i class="fa fa-smile-o"></i>
                                 </div>
-                                <form action="/liked/messages?id=${user.id}" id="mess" method="post"></form>
+                                <form action="/liked/messages?id=${userId}" id="mess" method="post"></form>
                                 <div class="col-md-7 pl-0">
                                     <input form="mess" name="messageText" type="text" class="border-0" placeholder="Send message" accesskey="ENTER"/>
                                 </div>

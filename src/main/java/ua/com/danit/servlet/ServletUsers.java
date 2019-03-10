@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class ServletUsers extends HttpServlet {
 
@@ -52,9 +51,9 @@ public class ServletUsers extends HttpServlet {
         }
 
         data.put("user", user);
-        data.put("disliked", CryptUtil.encrypt("disliked"));
-        data.put("liked", CryptUtil.encrypt("liked"));
-        data.put("userId", CryptUtil.encrypt(Integer.toString(user.getId())));
+        data.put("disliked", CryptUtil.encryptExtra("disliked"));
+        data.put("liked", CryptUtil.encryptExtra("liked"));
+        data.put("userId", CryptUtil.encryptExtra(Integer.toString(user.getId())));
 
         freemarker.render("like-page.ftl", data, resp);
         countNext++;
@@ -65,9 +64,8 @@ public class ServletUsers extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         idUserFromCookie = new CookieUtil().getIdUser(req.getCookies());
 
-        Map<String, String[]> pm = req.getParameterMap();
-        String action = CryptUtil.decryptPrmName(pm, req);
-        int idUserWhom = CryptUtil.decryptPrmValue(pm, req);
+        String action = CryptUtil.decryptPrmName(req);
+        int idUserWhom = CryptUtil.decryptPrmValue(req);
 
         if(action.equals("disliked")){
             if (serviceLikes.checkLike(idUserFromCookie, idUserWhom)){

@@ -3,6 +3,7 @@ package ua.com.danit.servlet;
 import ua.com.danit.dto.User;
 import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CookieUtil;
+import ua.com.danit.utils.CryptUtil;
 import ua.com.danit.utils.DescribeTime;
 import ua.com.danit.utils.Freemarker;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class ServletPeopleList extends HttpServlet {
 
@@ -43,7 +45,7 @@ public class ServletPeopleList extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/liked/messages?id=" + req.getParameter("userId"));
+        resp.sendRedirect("/liked/messages?id=" + CryptUtil.encryptExtra(req.getParameter("userId")));
     }
 
 }

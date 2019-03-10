@@ -9,7 +9,7 @@ public class CookieUtil {
         int result = 0;
         for(Cookie cookie:cookies){
             if(cookie.getName().equals("tinderUser")){
-                result = Integer.parseInt(cookie.getValue());
+                result = Integer.parseInt(CryptUtil.decryptExtra(cookie.getValue()));
             }
         }
         return result;
@@ -37,8 +37,8 @@ public class CookieUtil {
         return flag;
     }
 
-    public HttpServletResponse addCookie(String nameCookie, String valueCookie, HttpServletResponse resp){
-        Cookie cookie = new Cookie(nameCookie, valueCookie);
+    public HttpServletResponse addCookie(String nameCookie, String valueCookie, HttpServletResponse resp) {
+        Cookie cookie = new Cookie(nameCookie, CryptUtil.encryptExtra(valueCookie));
         cookie.setMaxAge(24*60*60);
         resp.addCookie(cookie);
         return resp;
