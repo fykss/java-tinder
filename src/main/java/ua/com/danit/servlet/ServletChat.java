@@ -4,10 +4,8 @@ import ua.com.danit.dto.Message;
 import ua.com.danit.dto.User;
 import ua.com.danit.service.ServiceMessages;
 import ua.com.danit.service.ServiceUsers;
-import ua.com.danit.utils.CookieUtil;
-import ua.com.danit.utils.CryptUtil;
-import ua.com.danit.utils.DescribeTime;
-import ua.com.danit.utils.Freemarker;
+import ua.com.danit.utils.*;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +29,7 @@ public class ServletChat extends HttpServlet {
         this.serviceUsers = new ServiceUsers(dbConn);
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         idUserFromCookie = new CookieUtil().getIdUser(req.getCookies());
@@ -45,9 +44,10 @@ public class ServletChat extends HttpServlet {
         data.put("listMsg", allMessages);
 
         Collection<User> allLikedUser = serviceUsers.getAllLikedUsers(idUserFromCookie);
-        allLikedUser.forEach(user -> user.setTimeDif(new DescribeTime().describeTimeDif((Date)user.getDate())));
-        data.put("listUsers", allLikedUser);
+        Collection<IdUserForCrypt> rewrittenAllLikedUser = CryptUtil.encryptListIdUser(allLikedUser);
+        rewrittenAllLikedUser.forEach(user -> user.setTimeDif(new DescribeTime().describeTimeDif((Date)user.getDate())));
 
+        data.put("listUsers", rewrittenAllLikedUser);
         freemarker.render("people-list.ftl",data,resp);
     }
 

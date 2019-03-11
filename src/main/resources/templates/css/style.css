@@ -69,7 +69,7 @@ i {  vertical-align: middle; }
 .panel {
     margin-bottom: 20px;
     background-color: #fff;
-    border: 1px solid transparent;
+
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
@@ -381,7 +381,8 @@ input:focus{
 }
 .msg-box{
     background-color: white;
-    /*margin-top: 35px;*/
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .msg-box i{
     color: #404040;
@@ -449,6 +450,8 @@ input:focus{
 }
 .width{
     width: 500px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 10px;
 }
 .align-middle-my{
     width: 26%;
@@ -523,4 +526,7 @@ input:focus{
     width: 100%;
     height: auto;
     background: #ffffffb0;
+}
+.col-md-7{
+    padding-left: 1.5rem!important;
 }

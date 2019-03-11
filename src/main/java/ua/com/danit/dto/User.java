@@ -17,6 +17,14 @@ public class User {
 
     public User(){}
 
+    public User(String name, String surname, String position, String urlImg, Date date) {
+        this.name = name;
+        this.surname = surname;
+        this.position = position;
+        this.urlImg = urlImg;
+        this.date = date;
+    }
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
@@ -129,5 +137,21 @@ public class User {
 
     public void setTimeDif(String timeDif) {
         this.timeDif = timeDif;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", password='" + password + '\'' +
+                ", position='" + position + '\'' +
+                ", email='" + email + '\'' +
+                ", urlImg='" + urlImg + '\'' +
+                ", gender='" + gender + '\'' +
+                ", date=" + date +
+                ", timeDif='" + timeDif + '\'' +
+                '}';
     }
 }
