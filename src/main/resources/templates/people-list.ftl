@@ -127,7 +127,7 @@
                                     <form action="/liked/messages?id=${userId}" id="mess" method="post"></form>
                                     <div class="col-md-7 pl-0">
                                         <input form="mess" name="messageText" type="text" class="border-0" placeholder="Send message" accesskey="ENTER"/>
-                                    </div>
+                                    </div>2
                                     <div class="col-md-3 text-right options-right">
                                         <i class="fa fa-picture-o mr-2"></i>
                                     </div>
