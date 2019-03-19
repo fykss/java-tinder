@@ -15,7 +15,7 @@
 </head>
 
 <body class="error style">
-<div class="error_box">
+<div class="error_box-e">
     <div>You have not liked anyone :(<br>Please like someone.<br>Good luck!</div>
 </div>
 </body>
