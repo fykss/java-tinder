@@ -109,7 +109,7 @@ public class DbDaoUsers implements DaoUsers<User> {
     public void updateDate(int userId){
         try(PreparedStatement ps = dbConn.prepareStatement(
                 "UPDATE OD_88_tinderUsers SET date = ? WHERE id = ?")) {
-            ps.setTimestamp(1, new Timestamp(System.currentTimeMillis() + 2*60*60*1000));
+            ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
             ps.setInt(2, userId);
             ps.execute();
         }catch (SQLException e){
