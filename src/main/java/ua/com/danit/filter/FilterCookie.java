@@ -33,7 +33,7 @@ public class FilterCookie implements Filter {
             resp = cookieUtil.killCookie(req.getCookies(), resp);
             resp.sendRedirect("/login");
         } else{
-            if (req.getServletPath().equals("/login") || req.getServletPath().equals("/reg") || req.getServletPath().equals("/templates/css")) {
+            if (req.getServletPath().equals("/reg/activate") || req.getServletPath().equals("/login") || req.getServletPath().equals("/reg") || req.getServletPath().equals("/templates/css")) {
                 chain.doFilter(req, resp);
             } else {
                 if (cookieUtil.checkCookie(req.getCookies())) {

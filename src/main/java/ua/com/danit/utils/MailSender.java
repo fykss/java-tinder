@@ -14,7 +14,7 @@ public class MailSender {
         final String password = "w12zw12z";
         private Properties props;
 
-    public MailSender() throws MessagingException {
+    public MailSender(){
         this.props = new Properties();
         props.put("mail.smtp.auth", true);
         props.put("mail.smtp.starttls.enable", true);

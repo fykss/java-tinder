@@ -18,7 +18,7 @@
 <body class="success style">
 <div class="success_box-e">
     <div class="success_box-title">Success:</div>
-    <div>User create successfully: <span class="error_box-span-email">${name} ${surname}</span></div>
+    <div>Profile create successfully</div>
 </div>
 </body>
 </html>
