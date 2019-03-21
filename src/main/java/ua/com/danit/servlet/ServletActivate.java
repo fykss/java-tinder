@@ -29,7 +29,7 @@ public class ServletActivate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = CryptUtil.decryptExtra(req.getParameter("em"));
-        if(serviceTempArrayListForUser.getAllUsers().isEmpty()){
+        if(serviceTempArrayListForUser.getAllUsers().isEmpty() || serviceTempArrayListForUser.getUser(email) == null){
             resp.setHeader("Refresh","3; URL=/reg");
             freemarker.render("error_active.ftl", data,resp);
         }else {
