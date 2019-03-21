@@ -5,13 +5,13 @@ import ua.com.danit.service.ServiceTempArrayListForUser;
 import ua.com.danit.service.ServiceUsers;
 import ua.com.danit.utils.CryptUtil;
 import ua.com.danit.utils.Freemarker;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ServletActivate extends HttpServlet {
@@ -21,9 +21,9 @@ public class ServletActivate extends HttpServlet {
     private ServiceUsers serviceUsers;
     private ServiceTempArrayListForUser serviceTempArrayListForUser;
 
-    public ServletActivate(Connection dbConn, ArrayList<User> tempArrayListForUsers) {
+    public ServletActivate(Connection dbConn, ServiceTempArrayListForUser tempArrayListForUsers) {
         this.serviceUsers = new ServiceUsers(dbConn);
-        this.serviceTempArrayListForUser = new ServiceTempArrayListForUser(tempArrayListForUsers);
+        this.serviceTempArrayListForUser = tempArrayListForUsers;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ServletActivate extends HttpServlet {
             resp.setHeader("Refresh","3; URL=/reg");
             freemarker.render("error_active.ftl", data,resp);
         }else {
-            if(!serviceTempArrayListForUser.timeActive(email)){
+            if(serviceTempArrayListForUser.timeActive(email)){
                 resp.setHeader("Refresh","3; URL=/reg");
                 freemarker.render("error_active.ftl", data,resp);
                 serviceTempArrayListForUser.delUser(email);

@@ -1,16 +1,16 @@
 package ua.com.danit.dao.hashMapStorage;
 
 import ua.com.danit.dto.User;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class TempArrayListForUser implements DaoTempArrayListForUser<User> {
 
-    private ArrayList<User> tempArrayListUsers;
+    private List<User> tempArrayListUsers = new ArrayList<>();
 
-    public TempArrayListForUser(ArrayList<User> tempArrayListUsers) {
-        this.tempArrayListUsers = tempArrayListUsers;
-    }
+    public TempArrayListForUser() { }
 
     @Override
     public void add(User user) {
