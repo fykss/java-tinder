@@ -14,7 +14,6 @@
 </head>
 
 <body class="text-center style">
-
 <form class="form-signin" action="/login" method="post">
     <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/TinderLogo-2017.svg/2000px-TinderLogo-2017.svg.png" alt="" width="220" height="55">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>

@@ -7,7 +7,6 @@
     <meta name="author" content="">
 
     <title>Signin Template for Bootstrap</title>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="/templates/css/bootstrap.min.css">
 
@@ -18,7 +17,7 @@
 <body class="error style">
 <div class="error_box-e">
     <div class="error_box-title">Error:</div>
-    <div>This email: <span class="error_box-span-email">${error}</span>.<br>Is not registered or wrong password. Try again.</div>
+    <div>This link not active anymore. Sorry:(</div>
 </div>
 </body>
 </html>

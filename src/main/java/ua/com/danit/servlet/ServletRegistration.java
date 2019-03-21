@@ -1,7 +1,11 @@
 package ua.com.danit.servlet;
 
+import ua.com.danit.dto.User;
+import ua.com.danit.service.ServiceTempArrayListForUser;
 import ua.com.danit.service.ServiceUsers;
+import ua.com.danit.utils.CryptUtil;
 import ua.com.danit.utils.Freemarker;
+import ua.com.danit.utils.MailSender;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,15 +18,18 @@ import java.util.HashMap;
 public class ServletRegistration extends HttpServlet {
 
     private ServiceUsers serviceUsers;
+    private ServiceTempArrayListForUser serviceTempArrayListForUser;
     private Freemarker freemarker = new Freemarker();
     private HashMap<String, Object> data = new HashMap<>();
 
-    public ServletRegistration(Connection dbConn) {
+    public ServletRegistration(Connection dbConn, ServiceTempArrayListForUser tempArrayListForUsers) {
         this.serviceUsers = new ServiceUsers(dbConn);
+        this.serviceTempArrayListForUser = tempArrayListForUsers;
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        serviceTempArrayListForUser.getAllUsers().forEach(System.out::println);
         freemarker.render("registration.html", data,resp);
     }
 
@@ -35,18 +42,22 @@ public class ServletRegistration extends HttpServlet {
         String password = req.getParameter("password");
         String urlImg = req.getParameter("urlImg");
         String gender = req.getParameter("gender");
-
+        String textMessageMail = "<p>To activate your profile, follow the link below</p><br>";
         //remove if
-        if(serviceUsers.checkEmail(email)){
+        if(serviceUsers.checkEmail(email) || serviceTempArrayListForUser.checkEmailTemporaryStorage(email)){
             resp.setHeader("Refresh","3; URL=/reg");
             data.put("error_email", email);
             freemarker.render("reg_error.ftl", data,resp);
         }else {
-            serviceUsers.addUser(name,surname,password,position,email,urlImg,gender);
+            serviceTempArrayListForUser.addUser(name,surname,password,position,email,urlImg,gender);
+            User user = serviceTempArrayListForUser.getUser(email);
+            MailSender mailSender = new MailSender();
+            mailSender.sendMessage(email, textMessageMail +
+                        req.getRequestURL() + "/activate?em=" +
+                        CryptUtil.encryptExtra(email));
             resp.setHeader("Refresh","3; URL=/login");
-            data.put("name", name);
-            data.put("surname", surname);
-            freemarker.render("reg_success.ftl", data,resp);
+            data.put("email", email);
+            freemarker.render("activate.ftl", data,resp);
         }
     }
 }
