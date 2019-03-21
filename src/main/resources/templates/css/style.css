@@ -414,6 +414,13 @@ input:focus{
     color: #55a95c;
     font-size: 18px;
 }
+.success_box-e{
+    margin: 0 auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
 .success_box-span-email, .error_box-title{
     font-weight: bold;
 }

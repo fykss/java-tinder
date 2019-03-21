@@ -52,9 +52,10 @@ public class ServletRegistration extends HttpServlet {
             serviceTempArrayListForUser.addUser(name,surname,password,position,email,urlImg,gender);
             User user = serviceTempArrayListForUser.getUser(email);
             MailSender mailSender = new MailSender();
-            mailSender.sendMessage(email, textMessageMail +
+            mailSender.sendMessage(email,  textMessageMail +
+                    "<a href='"+ req.getRequestURL() + "/activate?em=" + CryptUtil.encryptExtra(email) +"'>" +
                         req.getRequestURL() + "/activate?em=" +
-                        CryptUtil.encryptExtra(email));
+                        CryptUtil.encryptExtra(email) + "</a>");
             resp.setHeader("Refresh","3; URL=/login");
             data.put("email", email);
             freemarker.render("activate.ftl", data,resp);

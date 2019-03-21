@@ -5,6 +5,7 @@ import ua.com.danit.dto.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class TempArrayListForUser implements DaoTempArrayListForUser<User> {
 
@@ -24,7 +25,12 @@ public class TempArrayListForUser implements DaoTempArrayListForUser<User> {
 
     @Override
     public User get(String email) {
-        return tempArrayListUsers.stream().filter(u -> u.getEmail().equals(email)).findFirst().get();
+        User user = null;
+        Optional<User> optionalUser = tempArrayListUsers.stream().filter(u -> u.getEmail().equals(email)).findFirst();
+        if(optionalUser.isPresent()){
+            user = optionalUser.get();
+        }
+        return user;
     }
 
     @Override
